@@ -146,6 +146,9 @@ public class MainActivity extends AppCompatActivity {
 
 
                         createAlarms(dateA,hoursBeforeEvent,minutesBeforeEvent);
+                        if(secondAlarmPressed){
+                            createAlarms(dateA,hoursBeforeSecondEvent,minutesBeforeSecondEvent);
+                        }
 
 
                     }
@@ -424,10 +427,24 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-    public static void writeToFile(String data,Context context) {
+    public static void writeCustom(String type, int value){
+        switch (type){
+            case "first":
+        }
+    }
+
+
+
+
+
+
+
+
+    public void writeToFile(String data,Context context) {
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("config.txt", Context.MODE_PRIVATE));
             outputStreamWriter.write(data);
+            Toast.makeText(MainActivity.this,"saved to " + getFilesDir() + "/" + "config.txt",Toast.LENGTH_LONG).show();
             outputStreamWriter.close();
         }
         catch (IOException e) {
