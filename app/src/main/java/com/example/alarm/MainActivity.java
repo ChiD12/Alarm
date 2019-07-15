@@ -23,6 +23,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -79,11 +81,17 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar secondSeek;
     private static boolean secondAlarmPressed = false;
 
+    static private int firstBefore =0;
+    static private int secondBefore=0;
+    static private int isTwoAlarms =0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         //getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
@@ -109,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                try{seek.setProgress(Integer.parseInt(readFromFile(MainActivity.this)));
+                try{readCustom();
                 }catch (Exception e){
                     Log.getStackTraceString(e);
                 }
@@ -191,32 +199,32 @@ public class MainActivity extends AppCompatActivity {
                     case 0: text.setText("Time before event: 30 Minutes");
                             hoursBeforeEvent =0;
                             minutesBeforeEvent = 30;
-                            writeToFile("0",MainActivity.this);
+                            writeCustom("first", 0);
                             break;
                     case 1: text.setText("Time before event: 1 Hour");
                             hoursBeforeEvent =1;
                             minutesBeforeEvent = 0;
-                            writeToFile("1",MainActivity.this);
+                            writeCustom("first", 1);
                             break;
                     case 2: text.setText("Time before event: 1 Hour and 30 Minutes");
                             hoursBeforeEvent =1;
                             minutesBeforeEvent = 30;
-                            writeToFile("2",MainActivity.this);
+                            writeCustom("first", 2);
                             break;
                     case 3: text.setText("Time before event: 2 Hours");
                             hoursBeforeEvent =2;
                             minutesBeforeEvent = 0;
-                            writeToFile("3",MainActivity.this);
+                            writeCustom("first", 3);
                             break;
                     case 4: text.setText("Time before event: 2 Hours and 30 Minutes");
-                        hoursBeforeEvent =2;
-                        minutesBeforeEvent = 30;
-                            writeToFile("4",MainActivity.this);
+                            hoursBeforeEvent =2;
+                            minutesBeforeEvent = 30;
+                            writeCustom("first", 4);
                             break;
                     case 5: text.setText("Time before event: 3 Hours");
                             hoursBeforeEvent =3;
                             minutesBeforeEvent = 0;
-                            writeToFile("5",MainActivity.this);
+                            writeCustom("first", 5);
                             break;
                 }
             }
@@ -236,35 +244,35 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 switch (progress){
                     case 0: secondText.setText("Time before event: 30 Minutes");
-                        hoursBeforeSecondEvent =0;
-                        minutesBeforeSecondEvent = 30;
-                        writeToFile("0",MainActivity.this);
-                        break;
+                            hoursBeforeSecondEvent =0;
+                            minutesBeforeSecondEvent = 30;
+                            writeCustom("second", 0);
+                            break;
                     case 1: secondText.setText("Time before event: 1 Hour");
-                        hoursBeforeSecondEvent =1;
-                        minutesBeforeSecondEvent = 0;
-                        writeToFile("1",MainActivity.this);
-                        break;
+                            hoursBeforeSecondEvent =1;
+                            minutesBeforeSecondEvent = 0;
+                            writeCustom("second", 1);
+                            break;
                     case 2: secondText.setText("Time before event: 1 Hour and 30 Minutes");
-                        hoursBeforeSecondEvent =1;
-                        minutesBeforeSecondEvent = 30;
-                        writeToFile("2",MainActivity.this);
-                        break;
+                            hoursBeforeSecondEvent =1;
+                            minutesBeforeSecondEvent = 30;
+                            writeCustom("second", 2);
+                            break;
                     case 3: secondText.setText("Time before event: 2 Hours");
-                        hoursBeforeSecondEvent =2;
-                        minutesBeforeSecondEvent = 0;
-                        writeToFile("3",MainActivity.this);
-                        break;
+                            hoursBeforeSecondEvent =2;
+                            minutesBeforeSecondEvent = 0;
+                            writeCustom("second", 3);
+                            break;
                     case 4: secondText.setText("Time before event: 2 Hours and 30 Minutes");
-                        hoursBeforeSecondEvent =2;
-                        minutesBeforeSecondEvent = 30;
-                        writeToFile("4",MainActivity.this);
-                        break;
+                            hoursBeforeSecondEvent =2;
+                            minutesBeforeSecondEvent = 30;
+                            writeCustom("second", 4);
+                            break;
                     case 5: secondText.setText("Time before event: 3 Hours");
-                        hoursBeforeSecondEvent =3;
-                        minutesBeforeSecondEvent = 0;
-                        writeToFile("5",MainActivity.this);
-                        break;
+                            hoursBeforeSecondEvent =3;
+                            minutesBeforeSecondEvent = 0;
+                            writeCustom("second", 5);
+                            break;
                 }
             }
 
@@ -328,10 +336,13 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(openClockIntent);
                     }
 
-                                    /*try{Thread.sleep(1000);}catch (InterruptedException e) {
+                    if(getDeviceName().substring(0,7).equals("OnePlus")){    //if device is a oneplus
+                        try{Thread.sleep(1000);}catch (InterruptedException e) {
 
-                                        e.printStackTrace();
-                                    }*/
+                            e.printStackTrace();
+                        }
+                    }
+
 
                     dateCreated = dateA.get(i).getDay();
                 }
@@ -358,11 +369,13 @@ public class MainActivity extends AppCompatActivity {
             secondAlarmPressed = false;
             secondSeek.setVisibility(View.INVISIBLE);
             secondText.setVisibility(View.INVISIBLE);
+            writeCustom(true);
 
         }else{
             secondAlarmPressed = true;
             secondSeek.setVisibility(View.VISIBLE);
             secondText.setVisibility(View.VISIBLE);
+            writeCustom(false);
         }
 
         return super.onOptionsItemSelected(item);
@@ -427,11 +440,62 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-    public static void writeCustom(String type, int value){
+    public void writeCustom(String type, int value){
+
         switch (type){
             case "first":
+                firstBefore = value;
+                break;
+            case "second":
+                secondBefore = value;
+                break;
         }
+        String save;
+        save = firstBefore + " " + secondBefore + " " + isTwoAlarms;
+        writeToFile(save,MainActivity.this);
     }
+    public void writeCustom(int value, int value2){
+
+        firstBefore = value;
+        secondBefore = value2;
+
+        String save;
+        save = firstBefore + " " + secondBefore + " " + isTwoAlarms;
+        writeToFile(save,MainActivity.this);
+    }
+    public void writeCustom(boolean two){
+
+
+        if(two){
+            isTwoAlarms = 1;
+        }else{
+            isTwoAlarms = 0;
+        }
+
+        String save;
+        save = firstBefore + " " + secondBefore + " " + isTwoAlarms;
+        writeToFile(save,MainActivity.this);
+    }
+
+    public void readCustom(){
+        String current = readFromFile(MainActivity.this);
+        String[] split = current.split(" ");
+        seek.setProgress(Integer.parseInt(split[0]));
+        secondSeek.setProgress(Integer.parseInt(split[1]));
+
+        if(split[2].equals("1")){
+            secondAlarmPressed = false;
+            secondSeek.setVisibility(View.INVISIBLE);
+            secondText.setVisibility(View.INVISIBLE);
+
+        }else{
+            secondAlarmPressed = true;
+            secondSeek.setVisibility(View.VISIBLE);
+            secondText.setVisibility(View.VISIBLE);
+        }
+
+    }
+
 
 
 
@@ -480,6 +544,36 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return ret;
+    }
+    public static String getDeviceName() {             //to check if device is OnePlus
+        String manufacturer = Build.MANUFACTURER;
+        String model = Build.MODEL;
+        if (model.startsWith(manufacturer)) {
+            return capitalize(model);
+        }
+        return capitalize(manufacturer) + " " + model;
+    }
+
+    private static String capitalize(String str) {   //support method for getDeviceName
+        if (TextUtils.isEmpty(str)) {
+            return str;
+        }
+        char[] arr = str.toCharArray();
+        boolean capitalizeNext = true;
+
+        StringBuilder phrase = new StringBuilder();
+        for (char c : arr) {
+            if (capitalizeNext && Character.isLetter(c)) {
+                phrase.append(Character.toUpperCase(c));
+                capitalizeNext = false;
+                continue;
+            } else if (Character.isWhitespace(c)) {
+                capitalizeNext = true;
+            }
+            phrase.append(c);
+        }
+
+        return phrase.toString();
     }
 
 
