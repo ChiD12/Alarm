@@ -32,7 +32,6 @@ public class ReadCal<cursor> {
         Log.i(todayDate.toString(),"hi");
     }
 
-
     public ArrayList<MyDate> getEvents(){
 
 
