@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar seek;
     private TextView secondText;
     private SeekBar secondSeek;
-    private static boolean secondAlarmPressed = false;
+    public static boolean secondAlarmPressed = false;
 
     static private int firstBefore =0;
     static private int secondBefore=0;

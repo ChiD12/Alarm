@@ -28,6 +28,34 @@ public class ReadCal<cursor> {
     public ReadCal(Context ctx){
         contentResolver = ctx.getContentResolver();
         today = Calendar.getInstance();
+        int largerH;
+        int largerM;
+        if(MainActivity.secondAlarmPressed) {
+            if (MainActivity.hoursBeforeEvent > MainActivity.hoursBeforeSecondEvent) {  //compares the two alarms to check which is created earlier
+                largerH = MainActivity.hoursBeforeEvent;
+                largerM = MainActivity.minutesBeforeEvent;
+            } else {
+                largerH = MainActivity.hoursBeforeSecondEvent;
+                largerM = MainActivity.minutesBeforeSecondEvent;
+            }
+            if (MainActivity.hoursBeforeEvent == MainActivity.hoursBeforeSecondEvent) {
+                if (MainActivity.minutesBeforeEvent > MainActivity.minutesBeforeSecondEvent) {
+                    largerH = MainActivity.hoursBeforeEvent;
+                    largerM = MainActivity.minutesBeforeEvent;
+                } else {
+                    largerH = MainActivity.hoursBeforeSecondEvent;
+                    largerM = MainActivity.minutesBeforeSecondEvent;
+                }
+            }
+        }
+        else{
+            largerH = MainActivity.hoursBeforeEvent;
+            largerM = MainActivity.minutesBeforeEvent;
+        }
+        today.add(Calendar.HOUR_OF_DAY,largerH);
+        today.add(Calendar.MINUTE, largerM);
+
+
         todayDate = createDateObj(today, "Today");
         Log.i(todayDate.toString(),"hi");
     }
