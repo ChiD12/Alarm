@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/chrisicon_round"
         android:supportsRtl="true"
         android:theme="@style/Platform.MaterialComponents">
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
