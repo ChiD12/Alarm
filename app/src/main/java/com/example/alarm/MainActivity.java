@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
@@ -14,6 +15,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.provider.AlarmClock;
@@ -576,5 +578,37 @@ public class MainActivity extends AppCompatActivity {
         return phrase.toString();
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if(intent.getStringExtra("methodName").equals("myMethod")){
+            Log.e("intent entered",intent.toString());
+            ReadCal cal = new ReadCal(getApplicationContext());
+            ArrayList<MyDate> dateA =  cal.getEvents();
+
+
+
+            createAlarms(dateA,hoursBeforeEvent,minutesBeforeEvent);
+            if(secondAlarmPressed){
+                createAlarms(dateA,hoursBeforeSecondEvent,minutesBeforeSecondEvent);
+            }
+        }
+    }
+
 
 }
+/*public class MyService extends Service {
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        yourParticularMethod();  //do your task and stop the service when your task is done for battery saving purpose
+        context.stopService(new Intent(context, MyService.class));
+
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+}*/
