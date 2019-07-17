@@ -581,21 +581,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        if(intent.getStringExtra("methodName").equals("myMethod")){
-            Log.e("intent entered",intent.toString());
-            ReadCal cal = new ReadCal(getApplicationContext());
-            ArrayList<MyDate> dateA =  cal.getEvents();
+        if(intent.getStringExtra("methodName") != null) {
+
+            if (intent.getStringExtra("methodName").equals("myMethod")) {
+                Log.e("intent entered", intent.toString());
+                ReadCal cal = new ReadCal(getApplicationContext());
+                ArrayList<MyDate> dateA = cal.getEvents();
 
 
-
-            createAlarms(dateA,hoursBeforeEvent,minutesBeforeEvent);
-            if(secondAlarmPressed){
-                createAlarms(dateA,hoursBeforeSecondEvent,minutesBeforeSecondEvent);
+                createAlarms(dateA, hoursBeforeEvent, minutesBeforeEvent);
+                if (secondAlarmPressed) {
+                    createAlarms(dateA, hoursBeforeSecondEvent, minutesBeforeSecondEvent);
+                }
+                finish();
+                System.exit(0);
             }
         }
     }
-
-
 }
 /*public class MyService extends Service {
 

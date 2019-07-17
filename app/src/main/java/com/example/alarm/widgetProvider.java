@@ -17,7 +17,10 @@ public class widgetProvider extends AppWidgetProvider {
 
             Intent intent = new Intent(context, MainActivity.class);
             intent.putExtra("methodName","myMethod");
+            intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+
             PendingIntent pendingIntent = PendingIntent.getActivity(context,0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
+
 
 
 
