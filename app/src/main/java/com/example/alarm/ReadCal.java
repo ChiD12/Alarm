@@ -23,6 +23,7 @@ public class ReadCal<cursor> {
     ContentResolver contentResolver;
     Calendar today;
     Calendar thisEvent = Calendar.getInstance();
+    Calendar endTime;
     MyDate todayDate;
 
     public ReadCal(Context ctx){
@@ -48,15 +49,15 @@ public class ReadCal<cursor> {
                 }
             }
         }
-        else{
+        else{                                             //if only 1 alarm
             largerH = MainActivity.hoursBeforeEvent;
             largerM = MainActivity.minutesBeforeEvent;
         }
-        today.add(Calendar.HOUR_OF_DAY,largerH);
+        today.add(Calendar.HOUR_OF_DAY,largerH); //to not get events that the alarm would take place before current time
         today.add(Calendar.MINUTE, largerM);
 
 
-        todayDate = createDateObj(today, "Today");
+        todayDate = createDateObj(today, "Today",today);
         Log.i(todayDate.toString(),"hi");
     }
 
@@ -86,7 +87,7 @@ public class ReadCal<cursor> {
                 int id_2 = cursor.getColumnIndex(CalendarContract.Events.TITLE);
                 int id_3 = cursor.getColumnIndex(CalendarContract.Events.DURATION);
                 int id_4 = cursor.getColumnIndex(CalendarContract.Instances.BEGIN);
-                int id_5 = cursor.getColumnIndex(CalendarContract.Events.EXRULE);
+                int id_5 = cursor.getColumnIndex(CalendarContract.Instances.END);
                 int id_6 = cursor.getColumnIndex(CalendarContract.Events.EXDATE);
                 int id_7 = cursor.getColumnIndex(CalendarContract.Events.RDATE);
                 int id_8 = cursor.getColumnIndex(CalendarContract.Events.RRULE);
@@ -98,7 +99,7 @@ public class ReadCal<cursor> {
                 String titleValue = cursor.getString(id_2);
                 String repdate = cursor.getString(id_3);
                 String begValue = cursor.getString(id_4);
-                String exrule = cursor.getString(id_5);
+                String end = cursor.getString(id_5);
                 String exdate = cursor.getString(id_6);
                 String rdate = cursor.getString(id_7);
                 String rrule = cursor.getString(id_8);
@@ -106,20 +107,25 @@ public class ReadCal<cursor> {
 
 
 
-                Log.e("gdr","name: " +titleValue+ " exdate: " + exdate + " exrule: "  + exrule + " rdate: " + rdate + " rrule: " + rrule + " duration: " + repdate);
+
 
 
                 Long beglong = Long.parseLong(begValue); //Change start time of event to Long
+                Long endLong = Long.parseLong(end);
 
                 thisEvent.setTimeInMillis(beglong);  //set Calendar object to the time of begining of event
                 thisEvent.get(Calendar.MONTH);
                 Date calendarDate = thisEvent.getTime(); //Changes Calendar to Date object for output
 
+                endTime.setTimeInMillis(endLong);
+
+
+
                 SimpleDateFormat dateformat = new SimpleDateFormat("kk:mm, MM,dd,yyyy"); //Date formating and toString
 
 
 
-                MyDate current = createDateObj(thisEvent,titleValue);
+                MyDate current = createDateObj(thisEvent,titleValue,endTime);
 
                 Log.e(current.toString(),"hello");
 
@@ -133,9 +139,10 @@ public class ReadCal<cursor> {
 
         return dateAList;
     }
-    public MyDate createDateObj(Calendar cal, String name){
+    public MyDate createDateObj(Calendar cal, String name, Calendar end){ //creates a custom date object with seperated year/month/day/hour/minute variables
 
         Date d = cal.getTime();
+        Date dateEnd = end.getTime();
         SimpleDateFormat datey = new SimpleDateFormat("yyyy");
         String Year = datey.format(d);
         int inty = parseInt(Year);
@@ -152,9 +159,15 @@ public class ReadCal<cursor> {
         String hour = dateh.format(d);
         int inth = parseInt(hour);
 
+        String endHour = dateh.format(dateEnd);
+        int endIntH = parseInt(endHour);
+
         SimpleDateFormat datem = new SimpleDateFormat("mm");
         String minute = datem.format(d);
         int intm = parseInt(minute);
+
+        String endMinute = datem.format(dateEnd);
+        int endIntM = parseInt(endMinute);
 
         SimpleDateFormat ampm = new SimpleDateFormat("aa");
         String ampmS = ampm.format(d);
@@ -162,7 +175,7 @@ public class ReadCal<cursor> {
         long timeinmil = cal.getTimeInMillis();
         int dow = cal.get(Calendar.DAY_OF_WEEK);
 
-        return new MyDate(name,inty,intM,intd,inth,intm,dow, timeinmil,(ampmS.equals("PM")));
+        return new MyDate(name,inty,intM,intd,inth,intm,dow, timeinmil,(ampmS.equals("PM")),endIntH,endIntM);
     }
 
 }

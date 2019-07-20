@@ -12,8 +12,10 @@ public class MyDate {
     private int dayOfWeek;
     private long timeinMil;
     private boolean isPM;
+    private int endHour;
+    private int endMinute;
 
-    public MyDate(String name, int y, int M, int d,int h, int m, int dow, long mil, boolean pm){
+    public MyDate(String name, int y, int M, int d,int h, int m, int dow, long mil, boolean pm,int eH, int eM){
         setName(name);
         setYear(y);
         setMonth(M);
@@ -23,6 +25,8 @@ public class MyDate {
         setDayOfWeek(dow);
         setTimeinMil(mil);
         setPM(pm);
+        setEndHour(eH);
+        setEndMinute(eM);
     }
 
     public String getName() {
@@ -90,6 +94,18 @@ public class MyDate {
     }
     public void setPM(boolean PM) {
         isPM = PM;
+    }
+    public int getEndHour() {
+        return endHour;
+    }
+    public void setEndHour(int endHour) {
+        this.endHour = endHour;
+    }
+    public int getEndMinute() {
+        return endMinute;
+    }
+    public void setEndMinute(int endMinute) {
+        this.endMinute = endMinute;
     }
 
     public String toString(){

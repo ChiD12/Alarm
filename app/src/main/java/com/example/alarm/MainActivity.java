@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar seek;
     private TextView secondText;
     private SeekBar secondSeek;
+    private Button newActivity;
     public static boolean secondAlarmPressed = false;
 
     static private int firstBefore =0;
@@ -104,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
         seek = (SeekBar) findViewById(R.id.seekBT);
         secondText = (TextView) findViewById(R.id.seekTextBT2);
         secondSeek = (SeekBar) findViewById(R.id.seekBT2);
+        newActivity = (Button) findViewById(R.id.newAct);
 
         new Thread(new Runnable() {
             public void run() {
@@ -122,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 try{readCustom();
                 }catch (Exception e){
                     Log.getStackTraceString(e);
+                    Log.e("cant find file","intent");
                 }
 
 
@@ -292,8 +295,16 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+            newActivity.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent newactint = new Intent(MainActivity.this, Schedule.class);
+                    startActivity(newactint);
+                }
+            });
     }
+
+
 
     public void createAlarms(ArrayList<MyDate> dateA, int hourB, int minuteB){
         int dateCreated=0;
@@ -442,7 +453,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-    public void writeCustom(String type, int value){
+    public void writeCustom(String type, int value){ //specifies what to write to file
 
         switch (type){
             case "first":
@@ -479,7 +490,7 @@ public class MainActivity extends AppCompatActivity {
         writeToFile(save,MainActivity.this);
     }
 
-    public void readCustom(){
+    public void readCustom(){  //specifies what to read from file
         String current = readFromFile(MainActivity.this);
         String[] split = current.split(" ");
         seek.setProgress(Integer.parseInt(split[0]));
@@ -580,10 +591,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onNewIntent(Intent intent) {
+        Log.e("in intent","intent");
         super.onNewIntent(intent);
         if(intent.getStringExtra("methodName") != null) {
-
             if (intent.getStringExtra("methodName").equals("myMethod")) {
+                Log.e("in if statement","intent");
                 Log.e("intent entered", intent.toString());
                 ReadCal cal = new ReadCal(getApplicationContext());
                 ArrayList<MyDate> dateA = cal.getEvents();
@@ -599,18 +611,3 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
-/*public class MyService extends Service {
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        yourParticularMethod();  //do your task and stop the service when your task is done for battery saving purpose
-        context.stopService(new Intent(context, MyService.class));
-
-        return super.onStartCommand(intent, flags, startId);
-    }
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
-}*/

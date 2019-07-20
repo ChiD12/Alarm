@@ -17,7 +17,8 @@ public class widgetProvider extends AppWidgetProvider {
 
             Intent intent = new Intent(context, MainActivity.class);
             intent.putExtra("methodName","myMethod");
-            intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+            //intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+
 
             PendingIntent pendingIntent = PendingIntent.getActivity(context,0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
 
@@ -26,6 +27,7 @@ public class widgetProvider extends AppWidgetProvider {
 
             RemoteViews views = new RemoteViews(context.getPackageName(),R.layout.widget);
             views.setOnClickPendingIntent(R.id.wdgBT,pendingIntent);
+
 
 
             appWidgetManager.updateAppWidget(appWidgetID,views);

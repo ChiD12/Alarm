@@ -1,0 +1,23 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.example.alarm"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.alarm.EventView
+        android:layout_width="match_parent"
+        android:layout_height="377dp"
+        android:background="#ccc"
+        app:exampleColor="#33b5e5"
+        app:exampleDimension="24sp"
+        app:exampleDrawable="@android:drawable/ic_menu_add"
+        app:exampleString="Event Name" />
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:text="Event Name"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp" />
+
+</FrameLayout>
