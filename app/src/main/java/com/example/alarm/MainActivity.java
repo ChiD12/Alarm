@@ -325,9 +325,12 @@ public class MainActivity extends AppCompatActivity {
                     int hour = dateA.get(i).getHour();
                     int minute= dateA.get(i).getMinute();
 
-                    if(minuteB == 30 && dateA.get(i).getMinute() == 0){
+                    if(minuteB > dateA.get(i).getMinute()){
                         hour -= 1;
-                        minute = 30;
+                        minute = 60 - (minuteB - dateA.get(i).getMinute());
+                    }
+                    else{
+                        minute -= minuteB;
                     }
                     hour -= hourB;
 

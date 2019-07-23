@@ -95,7 +95,7 @@ public class EventView extends View {
         // TODO: consider storing these as member variables to reduce
         // allocations per draw cycle.
         int paddingLeft = getPaddingLeft();
-        int paddingTop = (int)Schedule.convertDpToPixel(Schedule.timeToDP(startHour,startMin),getContext());
+        int paddingTop = getPaddingTop();
         int paddingRight = getPaddingRight();
         int paddingBottom = getPaddingBottom();
 

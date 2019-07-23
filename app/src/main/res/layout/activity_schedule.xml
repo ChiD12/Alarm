@@ -621,7 +621,7 @@
                     android:layout_weight="2" >
 
                     <include layout="@layout/calendar_zebra" />
-                    <include layout="@layout/sample_event_view"></include>
+
 
                 </RelativeLayout>
 

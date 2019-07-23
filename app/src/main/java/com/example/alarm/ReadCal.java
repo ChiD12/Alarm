@@ -23,7 +23,7 @@ public class ReadCal<cursor> {
     ContentResolver contentResolver;
     Calendar today;
     Calendar thisEvent = Calendar.getInstance();
-    Calendar endTime;
+    Calendar endTime = Calendar.getInstance();
     MyDate todayDate;
 
     public ReadCal(Context ctx){
