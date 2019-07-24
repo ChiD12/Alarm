@@ -82,11 +82,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView secondText;
     private SeekBar secondSeek;
     private Button newActivity;
-    public static boolean secondAlarmPressed = false;
+    public static boolean secondAlarmPressed;
+    public static boolean justRead = false;
+    public static boolean swticherBool = false;
 
-    static private int firstBefore =0;
-    static private int secondBefore=0;
-    static private int isTwoAlarms =0;
+
+    static public int firstBefore;
+    static public int secondBefore;
+    static public int isTwoAlarms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -197,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() { //first seek bar
+        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() { //first seek currentLineTimeView
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 switch (progress){
@@ -244,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        secondSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() { //second seek bar
+        secondSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() { //second seek currentLineTimeView
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 switch (progress){
@@ -381,17 +384,21 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(secondAlarmPressed){
+        if(swticherBool){
+            Log.e("second","turned false from switch");
             secondAlarmPressed = false;
+            swticherBool = false;
             secondSeek.setVisibility(View.INVISIBLE);
             secondText.setVisibility(View.INVISIBLE);
-            writeCustom(true);
+            writeCustom(false);
 
         }else{
+            Log.e("second","turned true from switch");
             secondAlarmPressed = true;
+            swticherBool = true;
             secondSeek.setVisibility(View.VISIBLE);
             secondText.setVisibility(View.VISIBLE);
-            writeCustom(false);
+            writeCustom(true);
         }
 
         return super.onOptionsItemSelected(item);
@@ -468,6 +475,7 @@ public class MainActivity extends AppCompatActivity {
         }
         String save;
         save = firstBefore + " " + secondBefore + " " + isTwoAlarms;
+        Log.e("second","in writecustom "+ save);
         writeToFile(save,MainActivity.this);
     }
     public void writeCustom(int value, int value2){
@@ -482,7 +490,7 @@ public class MainActivity extends AppCompatActivity {
     public void writeCustom(boolean two){
 
 
-        if(two){
+        if(two) {
             isTwoAlarms = 1;
         }else{
             isTwoAlarms = 0;
@@ -490,25 +498,37 @@ public class MainActivity extends AppCompatActivity {
 
         String save;
         save = firstBefore + " " + secondBefore + " " + isTwoAlarms;
+        Log.e("second","in writecustom "+ save);
         writeToFile(save,MainActivity.this);
     }
 
     public void readCustom(){  //specifies what to read from file
         String current = readFromFile(MainActivity.this);
         String[] split = current.split(" ");
-        seek.setProgress(Integer.parseInt(split[0]));
-        secondSeek.setProgress(Integer.parseInt(split[1]));
 
-        if(split[2].equals("1")){
+        if(split[2].equals("0")){
+            Log.e("second","turned false from read");
+            swticherBool = false;
             secondAlarmPressed = false;
+            isTwoAlarms = 0;
             secondSeek.setVisibility(View.INVISIBLE);
             secondText.setVisibility(View.INVISIBLE);
 
-        }else{
+        }else if (split[2].equals("1")){
+            Log.e("second","turned true from read");
+            swticherBool = true;
             secondAlarmPressed = true;
+            isTwoAlarms = 1;
             secondSeek.setVisibility(View.VISIBLE);
             secondText.setVisibility(View.VISIBLE);
+        }else{
+            Log.e("second", "neither 1 or 0");
         }
+
+        seek.setProgress(Integer.parseInt(split[0]));
+        firstBefore = Integer.parseInt(split[0]);
+        secondSeek.setProgress(Integer.parseInt(split[1]));
+        secondBefore = Integer.parseInt(split[1]);
 
     }
 
@@ -592,25 +612,5 @@ public class MainActivity extends AppCompatActivity {
         return phrase.toString();
     }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        Log.e("in intent","intent");
-        super.onNewIntent(intent);
-        if(intent.getStringExtra("methodName") != null) {
-            if (intent.getStringExtra("methodName").equals("myMethod")) {
-                Log.e("in if statement","intent");
-                Log.e("intent entered", intent.toString());
-                ReadCal cal = new ReadCal(getApplicationContext());
-                ArrayList<MyDate> dateA = cal.getEvents();
 
-
-                createAlarms(dateA, hoursBeforeEvent, minutesBeforeEvent);
-                if (secondAlarmPressed) {
-                    createAlarms(dateA, hoursBeforeSecondEvent, minutesBeforeSecondEvent);
-                }
-                finish();
-                System.exit(0);
-            }
-        }
-    }
 }

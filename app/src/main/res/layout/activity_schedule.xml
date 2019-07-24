@@ -17,7 +17,7 @@
             android:id="@+id/currentMonthRelativeLayout"
             android:layout_width="0dp"
             android:layout_height="36dp"
-            android:layout_weight="1" >
+            android:layout_weight="1.2" >
 
             <TextView
                 android:id="@+id/currentMonthTextView"
@@ -55,10 +55,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="6dp"
+                android:layout_marginRight="2dp"
                 android:text=""
                 android:textColor="@color/medium_dark_gray"
-                android:textSize="30dp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -67,10 +67,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="6dp"
+                android:layout_marginLeft="2dp"
                 android:text="@string/sun"
                 android:textColor="@color/medium_dark_gray"
-                android:textSize="15dp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <View
@@ -93,10 +93,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="6dp"
+                android:layout_marginLeft="2dp"
                 android:text=""
                 android:textColor="@color/medium_dark_gray"
-                android:textSize="30dp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -105,11 +105,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="6dp"
+                android:layout_marginLeft="2dp"
                 android:gravity="center"
                 android:text="@string/mon"
                 android:textColor="@color/medium_dark_gray"
-                android:textSize="15dp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -125,10 +125,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="6dp"
+                android:layout_marginRight="2dp"
                 android:text=""
                 android:textColor="@color/medium_dark_gray"
-                android:textSize="30dp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -137,10 +137,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="6dp"
+                android:layout_marginLeft="2dp"
                 android:text="@string/tue"
                 android:textColor="@color/medium_dark_gray"
-                android:textSize="15dp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -156,10 +156,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="6dp"
+                android:layout_marginRight="2dp"
                 android:text=""
                 android:textColor="@color/medium_dark_gray"
-                android:textSize="30dp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -168,10 +168,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="6dp"
+                android:layout_marginLeft="2dp"
                 android:text="@string/wed"
                 android:textColor="@color/medium_dark_gray"
-                android:textSize="15dp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -187,10 +187,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="6dp"
+                android:layout_marginRight="2dp"
                 android:text=""
                 android:textColor="@color/medium_dark_gray"
-                android:textSize="30dp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -199,10 +199,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="6dp"
+                android:layout_marginLeft="2dp"
                 android:text="@string/thu"
                 android:textColor="@color/medium_dark_gray"
-                android:textSize="15dp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -218,11 +218,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="6dp"
-                android:layout_marginLeft="6dp"
+                android:layout_marginRight="2dp"
                 android:text=""
                 android:textColor="@color/medium_dark_gray"
-                android:textSize="30dp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -231,10 +230,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="6dp"
+                android:layout_marginLeft="2dp"
                 android:text="@string/fri"
                 android:textColor="@color/medium_dark_gray"
-                android:textSize="15dp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -250,10 +249,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="6dp"
+                android:layout_marginRight="2dp"
                 android:text=""
                 android:textColor="@color/medium_dark_gray"
-                android:textSize="30dp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -262,10 +261,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="6dp"
+                android:layout_marginLeft="2dp"
                 android:text="@string/sat"
                 android:textColor="@color/medium_dark_gray"
-                android:textSize="15dp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
         </RelativeLayout>
     </LinearLayout>
@@ -665,9 +664,154 @@
                     android:id="@+id/currentTimeLineView"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:layout_weight="14"
+                    android:layout_weight="150"
                     android:background="@color/strong_blue" />
+
+
             </LinearLayout>
+
+
+            <View
+                android:id="@+id/dividerView1"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="60dp"
+                android:background="@color/medium_gray" />
+            <View
+                android:id="@+id/dividerView3"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="120dp"
+                android:background="@color/medium_gray" />
+            <View
+                android:id="@+id/dividerView2"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="180dp"
+                android:background="@color/medium_gray" />
+
+            <View
+                android:id="@+id/dividerView4"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="240dp"
+                android:background="@color/medium_gray" />
+            <View
+                android:id="@+id/dividerView5"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="300dp"
+                android:background="@color/medium_gray" />
+
+            <View
+                android:id="@+id/dividerView6"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="360dp"
+                android:background="@color/medium_gray" />
+            <View
+                android:id="@+id/dividerView7"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="420dp"
+                android:background="@color/medium_gray" />
+            <View
+                android:id="@+id/dividerView8"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="480dp"
+                android:background="@color/medium_gray" />
+            <View
+                android:id="@+id/dividerView9"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="540dp"
+                android:background="@color/medium_gray" />
+            <View
+                android:id="@+id/dividerView10"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="600dp"
+                android:background="@color/medium_gray" />
+            <View
+                android:id="@+id/dividerView11"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="660dp"
+                android:background="@color/medium_gray" />
+            <View
+                android:id="@+id/dividerView12"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="720dp"
+                android:background="@color/medium_gray" />
+            <View
+                android:id="@+id/dividerView13"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="780dp"
+                android:background="@color/medium_gray" />
+            <View
+                android:id="@+id/dividerView14"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="840dp"
+                android:background="@color/medium_gray" />
+            <View
+                android:id="@+id/dividerView15"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="900dp"
+                android:background="@color/medium_gray" />
+            <View
+                android:id="@+id/dividerView16"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="960dp"
+                android:background="@color/medium_gray" />
+            <View
+                android:id="@+id/dividerView17"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="1020dp"
+                android:background="@color/medium_gray" />
+            <View
+                android:id="@+id/dividerView18"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="1080dp"
+                android:background="@color/medium_gray" />
+            <View
+                android:id="@+id/dividerView19"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="1140dp"
+                android:background="@color/medium_gray" />
+            <View
+                android:id="@+id/dividerView20"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="1200dp"
+                android:background="@color/medium_gray" />
+            <View
+                android:id="@+id/dividerView21"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="1260dp"
+                android:background="@color/medium_gray" />
+            <View
+                android:id="@+id/dividerView22"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="1320dp"
+                android:background="@color/medium_gray" />
+            <View
+                android:id="@+id/dividerView23"
+                android:layout_width="1500dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="1380dp"
+                android:background="@color/medium_gray" />
+
         </RelativeLayout>
     </ScrollView>
 
@@ -677,6 +821,7 @@
         android:layout_height="fill_parent"
         android:background="@color/cleargray"
         android:visibility="invisible" />
+
 
     <LinearLayout
         android:id="@+id/refreshLinearLayout"

@@ -91,4 +91,8 @@ public class EventViews extends View {
                 paddingTop+30 + (contentHeight + mTextHeight) / 2,
                 mTextPaint);
     }
+
+    public MyDate getCurrentDate() {
+        return currentDate;
+    }
 }
