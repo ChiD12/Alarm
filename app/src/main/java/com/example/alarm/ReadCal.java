@@ -33,7 +33,7 @@ public class ReadCal<cursor> {
         int largerM;
         if(MainActivity.secondAlarmPressed) {
             if (MainActivity.hoursBeforeEvent > MainActivity.hoursBeforeSecondEvent) {  //compares the two alarms to check which is created earlier
-                largerH = MainActivity.hoursBeforeEvent;
+                largerH = MainActivity.hoursBeforeEvent;  //TODO change so if one alarm is after current time show
                 largerM = MainActivity.minutesBeforeEvent;
             } else {
                 largerH = MainActivity.hoursBeforeSecondEvent;

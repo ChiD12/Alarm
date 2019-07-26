@@ -31,6 +31,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -90,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
     static public int firstBefore;
     static public int secondBefore;
     static public int isTwoAlarms;
+
+    private float x1, x2, y1, y2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -305,6 +308,27 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(newactint);
                 }
             });
+
+
+
+    }
+    public boolean onTouchEvent(MotionEvent touchevent){
+        switch (touchevent.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                x1 = touchevent.getX();
+                y1 = touchevent.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+                x2 = touchevent.getX();
+                y2 = touchevent.getY();
+                if (x1 > x2){
+                    Intent newactint = new Intent(MainActivity.this, Schedule.class);
+                    startActivity(newactint);
+                    overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+                }
+                break;
+        }
+        return false;
     }
 
 
@@ -356,7 +380,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     if(getDeviceName().substring(0,7).equals("OnePlus")){    //if device is a oneplus
-                        try{Thread.sleep(1000);}catch (InterruptedException e) {
+                        try{Thread.sleep(1500);}catch (InterruptedException e) {
 
                             e.printStackTrace();
                         }

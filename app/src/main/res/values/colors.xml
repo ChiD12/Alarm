@@ -3,10 +3,13 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#FFFFFF</color>
-    <color name="medium_dark_gray">#FCFFFFFF</color>
-    <color name="medium_gray">#FC444444</color>
+    <color name="white">#FCFFFFFF</color>
+    <color name="medium_gray">#FC413B3B</color>
     <color name="strong_blue">#1528E6</color>
     <color name="cleargray">#7C2C2C2C</color>
+    <color name="blueBG">#010A31</color>
+    <color name="redline">#E6190B</color>
+    <color name="redish">#EE1707</color>
 
 
 

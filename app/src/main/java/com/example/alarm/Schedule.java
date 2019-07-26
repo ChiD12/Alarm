@@ -3,13 +3,16 @@ package com.example.alarm;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.AlarmClock;
+import android.support.design.circularreveal.CircularRevealRelativeLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -48,6 +51,10 @@ public class Schedule extends AppCompatActivity {
     TextView satT;
     TextView sunT;
 
+    ScrollView top;
+
+    private float x1, x2, y1, y2;
+
     static ArrayList<EventViews> myViews = new ArrayList<>(10);
     static int[] daysOfWeekA = new int[7];
     int dow;
@@ -81,6 +88,16 @@ public class Schedule extends AppCompatActivity {
         friT = findViewById(R.id.fridayDateTextView);
         satT = findViewById(R.id.saturdayDateTextView);
         sunT = findViewById(R.id.sundayDateTextView);
+
+        top = findViewById(R.id.calendarScrollView);
+
+        top.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                onTouchEvent(event);
+                return false;
+            }
+        });
 
         ReadCal cal = new ReadCal(getApplicationContext());
         weekEvents = cal.getEvents();
@@ -123,6 +140,23 @@ public class Schedule extends AppCompatActivity {
             }
         }).start();
     }
+    public boolean onTouchEvent(MotionEvent touchevent){
+        switch (touchevent.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                x1 = touchevent.getX();
+                y1 = touchevent.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+                x2 = touchevent.getX();
+                y2 = touchevent.getY();
+                if (x1 < x2 &&  Math.abs(y2 - y1) <100){
+                    finish();
+                }
+                break;
+        }
+        return false;
+    }
+
 
     public void makeEvent(){   //loops through every event of the week and creates a clickable view for them at the correct positioning for its begining and end
 
@@ -303,5 +337,10 @@ public class Schedule extends AppCompatActivity {
                 break;
         }
     }
+    public void finish(){
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+    }
+
 }
 

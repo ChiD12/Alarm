@@ -2,8 +2,10 @@
 <android.support.design.circularreveal.CircularRevealRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/topLevel"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blueBG"
     tools:context=".Schedule">
 
     <LinearLayout
@@ -11,13 +13,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp" >
+        android:layout_marginTop="0dp">
 
         <RelativeLayout
             android:id="@+id/currentMonthRelativeLayout"
             android:layout_width="0dp"
             android:layout_height="36dp"
-            android:layout_weight="1.2" >
+            android:layout_weight="1.2">
 
             <TextView
                 android:id="@+id/currentMonthTextView"
@@ -26,9 +28,9 @@
                 android:layout_alignParentTop="true"
                 android:gravity="center"
                 android:text=""
+                android:textColor="@color/white"
                 android:textSize="15dp"
-                android:textStyle="bold"
-                android:textColor="@color/medium_dark_gray" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/currentYearTextView"
@@ -37,9 +39,9 @@
                 android:layout_alignParentBottom="true"
                 android:gravity="center"
                 android:text=""
+                android:textColor="@color/white"
                 android:textSize="13dp"
-                android:textStyle="bold"
-                android:textColor="@color/medium_dark_gray" />
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
@@ -47,30 +49,30 @@
             android:id="@+id/sundayHeaderRelativeLayout"
             android:layout_width="0dp"
             android:layout_height="36dp"
-            android:layout_weight="2" >
+            android:layout_weight="2">
 
             <TextView
                 android:id="@+id/sundayDateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginRight="2dp"
                 android:text=""
-                android:textColor="@color/medium_dark_gray"
-                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/sundayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginLeft="2dp"
                 android:text="@string/sun"
-                android:textColor="@color/medium_dark_gray"
-                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
             <View
@@ -78,38 +80,38 @@
                 android:layout_width="fill_parent"
                 android:layout_height="2dp"
                 android:layout_alignParentBottom="true"
-                android:background="@color/strong_blue" />
+                android:background="@color/redline" />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/mondayHeaderRelativeLayout"
             android:layout_width="0dp"
             android:layout_height="36dp"
-            android:layout_weight="2" >
+            android:layout_weight="2">
 
             <TextView
                 android:id="@+id/mondayDateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginLeft="2dp"
                 android:text=""
-                android:textColor="@color/medium_dark_gray"
-                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/mondayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginLeft="2dp"
                 android:gravity="center"
                 android:text="@string/mon"
-                android:textColor="@color/medium_dark_gray"
-                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:textSize="15dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -117,30 +119,30 @@
             android:id="@+id/tuesdayHeaderRelativeLayout"
             android:layout_width="0dp"
             android:layout_height="36dp"
-            android:layout_weight="2" >
+            android:layout_weight="2">
 
             <TextView
                 android:id="@+id/tuesdayDateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginRight="2dp"
                 android:text=""
-                android:textColor="@color/medium_dark_gray"
-                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tuesdayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginLeft="2dp"
                 android:text="@string/tue"
-                android:textColor="@color/medium_dark_gray"
-                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:textSize="15dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -148,30 +150,30 @@
             android:id="@+id/wednesdayHeaderRelativeLayout"
             android:layout_width="0dp"
             android:layout_height="36dp"
-            android:layout_weight="2" >
+            android:layout_weight="2">
 
             <TextView
                 android:id="@+id/wednesdayDateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginRight="2dp"
                 android:text=""
-                android:textColor="@color/medium_dark_gray"
-                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/wednesdayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginLeft="2dp"
                 android:text="@string/wed"
-                android:textColor="@color/medium_dark_gray"
-                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:textSize="15dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -179,30 +181,30 @@
             android:id="@+id/thursdayHeaderRelativeLayout"
             android:layout_width="0dp"
             android:layout_height="36dp"
-            android:layout_weight="2" >
+            android:layout_weight="2">
 
             <TextView
                 android:id="@+id/thursdayDateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginRight="2dp"
                 android:text=""
-                android:textColor="@color/medium_dark_gray"
-                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/thursdayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginLeft="2dp"
                 android:text="@string/thu"
-                android:textColor="@color/medium_dark_gray"
-                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:textSize="15dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -210,30 +212,30 @@
             android:id="@+id/fridayHeaderRelativeLayout"
             android:layout_width="0dp"
             android:layout_height="36dp"
-            android:layout_weight="2" >
+            android:layout_weight="2">
 
             <TextView
                 android:id="@+id/fridayDateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginRight="2dp"
                 android:text=""
-                android:textColor="@color/medium_dark_gray"
-                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/fridayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginLeft="2dp"
                 android:text="@string/fri"
-                android:textColor="@color/medium_dark_gray"
-                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:textSize="15dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -241,30 +243,30 @@
             android:id="@+id/saturdayHeaderRelativeLayout"
             android:layout_width="0dp"
             android:layout_height="36dp"
-            android:layout_weight="2" >
+            android:layout_weight="2">
 
             <TextView
                 android:id="@+id/saturdayDateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginRight="2dp"
                 android:text=""
-                android:textColor="@color/medium_dark_gray"
-                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/saturdayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginLeft="2dp"
                 android:text="@string/sat"
-                android:textColor="@color/medium_dark_gray"
-                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:textSize="15dp"
                 android:textStyle="bold" />
         </RelativeLayout>
     </LinearLayout>
@@ -283,30 +285,30 @@
         android:layout_height="fill_parent"
         android:layout_below="@+id/dividerView"
         android:layout_alignParentBottom="true"
+        android:fadingEdge="none"
         android:overScrollMode="never"
         android:padding="0dp"
-        android:scrollbars="none"
-        android:fadingEdge="none" >
+        android:scrollbars="none">
 
         <RelativeLayout
             android:id="@+id/calendarRelativeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="0dp" >
+            android:padding="0dp">
 
             <LinearLayout
                 android:id="@+id/calendarSplitterRelativeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
-                android:padding="0dp" >
+                android:padding="0dp">
 
                 <RelativeLayout
                     android:id="@+id/hoursRelativeLayout"
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1.2"
-                    android:padding="1dp" >
+                    android:padding="1dp">
 
                     <include layout="@layout/calendar_zebra" />
 
@@ -315,10 +317,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="false"
-                        android:layout_marginRight="5dp"
                         android:layout_marginTop="0dp"
+                        android:layout_marginRight="5dp"
                         android:gravity="center"
                         android:text="@string/time12am"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -326,10 +329,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="60dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time1am"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -337,10 +341,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="120dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time2am"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -348,10 +353,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="180dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time3am"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -359,10 +365,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="240dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time4am"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -374,6 +381,7 @@
                         android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time5am"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -381,10 +389,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="360dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time6am"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -392,10 +401,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="420dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time7am"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -403,10 +413,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="480dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time8am"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -414,10 +425,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="540dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time9am"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -425,10 +437,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="600dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time10am"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -436,10 +449,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="660dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time11am"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -447,10 +461,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="720dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time12pm"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -458,10 +473,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="780dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time1pm"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -469,10 +485,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="840dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time2pm"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -480,10 +497,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="900dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time3pm"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -491,10 +509,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="960dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time4pm"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -502,10 +521,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="1020dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time5pm"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -513,10 +533,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="1080dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time6pm"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -524,10 +545,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="1140dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time7pm"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -535,10 +557,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="1200dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time8pm"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -546,10 +569,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="1260dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time9pm"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -557,10 +581,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="1320dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center"
                         android:text="@string/time10pm"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
 
                     <TextView
@@ -568,10 +593,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
                         android:layout_marginTop="1380dp"
+                        android:layout_marginRight="6dp"
                         android:gravity="center|top"
                         android:text="@string/time11pm"
+                        android:textColor="@color/white"
                         android:textSize="15dp" />
                 </RelativeLayout>
 
@@ -579,7 +605,7 @@
                     android:id="@+id/sundayRelativeLayout"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2" >
+                    android:layout_weight="2">
 
                     <include layout="@layout/calendar_zebra" />
 
@@ -589,7 +615,7 @@
                     android:id="@+id/mondayRelativeLayout"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2" >
+                    android:layout_weight="2">
 
                     <include layout="@layout/calendar_zebra" />
                 </RelativeLayout>
@@ -598,7 +624,7 @@
                     android:id="@+id/tuesdayRelativeLayout"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2" >
+                    android:layout_weight="2">
 
                     <include layout="@layout/calendar_zebra" />
                 </RelativeLayout>
@@ -607,7 +633,7 @@
                     android:id="@+id/wednesdayRelativeLayout"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2" >
+                    android:layout_weight="2">
 
                     <include layout="@layout/calendar_zebra" />
 
@@ -617,7 +643,7 @@
                     android:id="@+id/thursdayRelativeLayout"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2" >
+                    android:layout_weight="2">
 
                     <include layout="@layout/calendar_zebra" />
 
@@ -628,7 +654,7 @@
                     android:id="@+id/fridayRelativeLayout"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2" >
+                    android:layout_weight="2">
 
                     <include layout="@layout/calendar_zebra" />
 
@@ -638,7 +664,7 @@
                     android:id="@+id/saturdayRelativeLayout"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2" >
+                    android:layout_weight="2">
 
                     <include layout="@layout/calendar_zebra" />
 
@@ -653,7 +679,7 @@
                 android:layout_marginTop="100dp"
                 android:baselineAligned="false"
                 android:orientation="horizontal"
-                android:padding="0dp" >
+                android:padding="0dp">
 
                 <View
                     android:layout_width="0dp"
@@ -665,7 +691,7 @@
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_weight="150"
-                    android:background="@color/strong_blue" />
+                    android:background="@color/redline" />
 
 
             </LinearLayout>
@@ -677,12 +703,14 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="60dp"
                 android:background="@color/medium_gray" />
+
             <View
                 android:id="@+id/dividerView3"
                 android:layout_width="1500dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="120dp"
                 android:background="@color/medium_gray" />
+
             <View
                 android:id="@+id/dividerView2"
                 android:layout_width="1500dp"
@@ -696,6 +724,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="240dp"
                 android:background="@color/medium_gray" />
+
             <View
                 android:id="@+id/dividerView5"
                 android:layout_width="1500dp"
@@ -709,102 +738,119 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="360dp"
                 android:background="@color/medium_gray" />
+
             <View
                 android:id="@+id/dividerView7"
                 android:layout_width="1500dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="420dp"
                 android:background="@color/medium_gray" />
+
             <View
                 android:id="@+id/dividerView8"
                 android:layout_width="1500dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="480dp"
                 android:background="@color/medium_gray" />
+
             <View
                 android:id="@+id/dividerView9"
                 android:layout_width="1500dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="540dp"
                 android:background="@color/medium_gray" />
+
             <View
                 android:id="@+id/dividerView10"
                 android:layout_width="1500dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="600dp"
                 android:background="@color/medium_gray" />
+
             <View
                 android:id="@+id/dividerView11"
                 android:layout_width="1500dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="660dp"
                 android:background="@color/medium_gray" />
+
             <View
                 android:id="@+id/dividerView12"
                 android:layout_width="1500dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="720dp"
                 android:background="@color/medium_gray" />
+
             <View
                 android:id="@+id/dividerView13"
                 android:layout_width="1500dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="780dp"
                 android:background="@color/medium_gray" />
+
             <View
                 android:id="@+id/dividerView14"
                 android:layout_width="1500dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="840dp"
                 android:background="@color/medium_gray" />
+
             <View
                 android:id="@+id/dividerView15"
                 android:layout_width="1500dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="900dp"
                 android:background="@color/medium_gray" />
+
             <View
                 android:id="@+id/dividerView16"
                 android:layout_width="1500dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="960dp"
                 android:background="@color/medium_gray" />
+
             <View
                 android:id="@+id/dividerView17"
                 android:layout_width="1500dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="1020dp"
                 android:background="@color/medium_gray" />
+
             <View
                 android:id="@+id/dividerView18"
                 android:layout_width="1500dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="1080dp"
                 android:background="@color/medium_gray" />
+
             <View
                 android:id="@+id/dividerView19"
                 android:layout_width="1500dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="1140dp"
                 android:background="@color/medium_gray" />
+
             <View
                 android:id="@+id/dividerView20"
                 android:layout_width="1500dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="1200dp"
                 android:background="@color/medium_gray" />
+
             <View
                 android:id="@+id/dividerView21"
                 android:layout_width="1500dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="1260dp"
                 android:background="@color/medium_gray" />
+
             <View
                 android:id="@+id/dividerView22"
                 android:layout_width="1500dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="1320dp"
                 android:background="@color/medium_gray" />
+
             <View
                 android:id="@+id/dividerView23"
                 android:layout_width="1500dp"
@@ -828,24 +874,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:padding="5dp"
         android:background="@drawable/bordered_rectangle"
+        android:padding="5dp"
         android:visibility="invisible">
 
         <ProgressBar
             android:id="@+id/refreshProgressBar"
+            style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="?android:attr/progressBarStyleLarge" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/updatingTextView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:textSize="24dp"
             android:layout_marginRight="5dp"
-            android:text="@string/updating" />
+            android:gravity="center_vertical"
+            android:text="@string/updating"
+            android:textSize="24dp" />
 
     </LinearLayout>
 

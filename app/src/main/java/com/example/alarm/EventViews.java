@@ -16,7 +16,7 @@ public class EventViews extends View {
 
     private String mExampleString;
     private  String mExampleString2;
-    private int mExampleColor = Color.RED;
+    private int mExampleColor = Color.WHITE;
     private float mExampleDimension = 0;
     private Drawable mExampleDrawable;
 
