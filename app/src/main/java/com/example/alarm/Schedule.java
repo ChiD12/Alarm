@@ -121,9 +121,9 @@ public class Schedule extends AppCompatActivity {
             setDayOfMonth(i,domHigherCal.get(Calendar.DAY_OF_MONTH));
             domHigherCal.add(Calendar.DAY_OF_MONTH,1);
         }
-        for (int i = dow-1; i >= 1; i--) {
-            domLowerCal.add(Calendar.DAY_OF_MONTH,-1);
-            setDayOfMonth(i,domLowerCal.get(Calendar.DAY_OF_MONTH));
+        for (int i = 1; i < dow; i++) {
+            setDayOfMonth(i,domHigherCal.get(Calendar.DAY_OF_MONTH));
+            domHigherCal.add(Calendar.DAY_OF_MONTH,1);
         }
 
         int nowLine = timeToDP(now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE)); //converts the hour and minutes of an event to its position in calendar in dp
@@ -203,7 +203,17 @@ public class Schedule extends AppCompatActivity {
             }
             myViews.add(myView); // Stores all created EventViews objects
             final String currentString= i.getName();
+            final int currentHour = i.getHour();
+            final int currentMinute = i.getMinute();
+            final int currentDoW= i.getDayOfWeek();
 
+            myView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    onTouchEvent(event);
+                    return false;
+                }
+            });
 
             myView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -215,7 +225,7 @@ public class Schedule extends AppCompatActivity {
                     boolean secondAlarmPressed = MainActivity.secondAlarmPressed;
 
 
-                    MyDate singleDate = search(currentString);
+                    MyDate singleDate = search(currentString,currentHour,currentMinute, currentDoW);
 
                     createAlarms(singleDate,hourB,minuteB);
                     if(secondAlarmPressed){
@@ -236,10 +246,10 @@ public class Schedule extends AppCompatActivity {
     public static float convertDpToPixel(float dp, Context context){
         return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
-    public static MyDate search(String name){
+    public static MyDate search(String name, int hour, int minute, int day){
         for(EventViews event: myViews){
             MyDate current =  event.getCurrentDate();
-            if(current.getName().equals(name)){
+            if(current.getName().equals(name) && current.getHour() == hour && current.getMinute() == minute && current.getDayOfWeek() == day){
                 return current;
             }
         }
@@ -253,7 +263,7 @@ public class Schedule extends AppCompatActivity {
 
         ArrayList<Integer> alarmDays= new ArrayList<Integer>();
         alarmDays.add((daybefore)?singleDate.getDayOfWeek()-1:singleDate.getDayOfWeek());
-        daybefore = false;
+        MainActivity.daybefore = false;
         int hour = singleDate.getHour();
         int minute= singleDate.getMinute();
 

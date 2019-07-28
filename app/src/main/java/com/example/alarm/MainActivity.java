@@ -63,6 +63,7 @@ import me.everything.providers.android.calendar.CalendarProvider;
 
 
 import static android.provider.AlarmClock.ALARM_SEARCH_MODE_ALL;
+import static android.provider.AlarmClock.ALARM_SEARCH_MODE_LABEL;
 import static java.lang.Integer.parseInt;
 import static java.util.Calendar.TUESDAY;
 
@@ -116,6 +117,17 @@ public class MainActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             public void run() {
 
+                Calendar now = Calendar.getInstance();
+
+                Intent myIntent = new Intent(getApplicationContext(),
+                        MainActivity.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                        getApplicationContext(), 1, myIntent, 0);
+
+                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+                alarmManager.set(AlarmManager.RTC, now.getTimeInMillis(),
+                        pendingIntent);
 
                 if (ContextCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
@@ -361,7 +373,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                     hour -= hourB;
 
+
                     openClockIntent = new Intent(AlarmClock.ACTION_SET_ALARM);
+
+
 
                     openClockIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     openClockIntent.putExtra(AlarmClock.EXTRA_HOUR, hour);
@@ -375,9 +390,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                    if(openClockIntent.resolveActivity(getPackageManager()) != null){
-                        startActivity(openClockIntent);
-                    }
+
+
+                        if (openClockIntent.resolveActivity(getPackageManager()) != null) {
+                            startActivity(openClockIntent);
+                        }
+
 
                     if(getDeviceName().substring(0,7).equals("OnePlus")){    //if device is a oneplus
                         try{Thread.sleep(1500);}catch (InterruptedException e) {
@@ -388,6 +406,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                     dateCreated = dateA.get(i).getDay();
+
                 }
 
             }
