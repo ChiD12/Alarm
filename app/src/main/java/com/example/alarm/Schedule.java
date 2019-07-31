@@ -4,8 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.provider.AlarmClock;
 import android.support.design.circularreveal.CircularRevealRelativeLayout;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -55,6 +59,8 @@ public class Schedule extends AppCompatActivity {
 
     private float x1, x2, y1, y2;
 
+    DrawerLayout DL;
+
     static ArrayList<EventViews> myViews = new ArrayList<>(10);
     static int[] daysOfWeekA = new int[7];
     int dow;
@@ -90,6 +96,19 @@ public class Schedule extends AppCompatActivity {
         sunT = findViewById(R.id.sundayDateTextView);
 
         top = findViewById(R.id.calendarScrollView);
+
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar2);
+
+        setSupportActionBar(toolbar);
+
+
+        DL = findViewById(R.id.drawer_layout);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,DL, toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+
+
+        DL.addDrawerListener(toggle);
+        toggle.syncState();
 
         top.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -350,6 +369,13 @@ public class Schedule extends AppCompatActivity {
     public void finish(){
         super.finish();
         overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+    }
+    public void onBackPressed(){   //overides the back button pressed to close drawer if open
+        if(DL.isDrawerOpen(GravityCompat.START)){
+            DL.closeDrawer(GravityCompat.START);
+        }else{
+            super.onBackPressed();
+        }
     }
 
 }

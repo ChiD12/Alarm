@@ -21,11 +21,11 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryDark"
             android:elevation="4dp"
             android:text="Alarm"
 
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,8 +36,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        
-        
+
+
         <TextView
             android:id="@+id/seekTextBT"
             android:layout_width="wrap_content"
