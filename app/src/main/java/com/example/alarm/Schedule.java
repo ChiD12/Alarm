@@ -102,6 +102,12 @@ public class Schedule extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
+        /*if(getSupportActionBar() != null){
+            getSupportActionBar().setTitle("");
+        }*/
+
+
+
         DL = findViewById(R.id.drawer_layout);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,DL, toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);

@@ -5,6 +5,7 @@
     android:layout_height="1440dp"
 
     android:background="@color/medium_gray"
+
     android:padding="1dp">
 
 

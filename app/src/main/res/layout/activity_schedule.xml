@@ -18,15 +18,13 @@
             android:id="@+id/toolbar2"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimaryDark"
+
+            android:background="@color/Transparent"
             android:elevation="4dp"
-            android:text="Alarm"
-            android:gravity="end"
 
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
 
-            />
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
 
 
         <LinearLayout
@@ -34,7 +32,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="0dp">
+            android:layout_marginTop="10dp"
+            android:baselineAligned="false">
+
 
             <RelativeLayout
                 android:id="@+id/currentMonthRelativeLayout"
@@ -68,6 +68,7 @@
 
             <RelativeLayout
                 android:id="@+id/sundayHeaderRelativeLayout"
+                android:layout_marginTop="15dp"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
                 android:layout_weight="2">
@@ -76,24 +77,25 @@
                     android:id="@+id/sundayDateTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginRight="2dp"
+                    android:layout_marginEnd="1dp"
                     android:text=""
                     android:textColor="@color/white"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/sundayTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
+                    android:layout_marginEnd="3dp"
+                    android:layout_toStartOf="@+id/sundayDateTextView"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="2dp"
+
                     android:text="@string/sun"
                     android:textColor="@color/white"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <View
@@ -106,6 +108,7 @@
 
             <RelativeLayout
                 android:id="@+id/mondayHeaderRelativeLayout"
+                android:layout_marginTop="15dp"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
                 android:layout_weight="2">
@@ -114,21 +117,21 @@
                     android:id="@+id/mondayDateTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginEnd="1dp"
                     android:text=""
                     android:textColor="@color/white"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/mondayTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
+                    android:layout_marginEnd="4dp"
+                    android:layout_toStartOf="@+id/mondayDateTextView"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="2dp"
                     android:gravity="center"
                     android:text="@string/mon"
                     android:textColor="@color/white"
@@ -138,6 +141,7 @@
 
             <RelativeLayout
                 android:id="@+id/tuesdayHeaderRelativeLayout"
+                android:layout_marginTop="15dp"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
                 android:layout_weight="2">
@@ -146,29 +150,31 @@
                     android:id="@+id/tuesdayDateTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginRight="2dp"
+                    android:layout_marginEnd="1dp"
                     android:text=""
                     android:textColor="@color/white"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tuesdayTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
+                    android:layout_marginEnd="3dp"
+                    android:layout_toStartOf="@+id/tuesdayDateTextView"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="2dp"
+
                     android:text="@string/tue"
                     android:textColor="@color/white"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/wednesdayHeaderRelativeLayout"
+                android:layout_marginTop="15dp"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
                 android:layout_weight="2">
@@ -177,29 +183,31 @@
                     android:id="@+id/wednesdayDateTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginRight="2dp"
+                    android:layout_marginEnd="1dp"
                     android:text=""
                     android:textColor="@color/white"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/wednesdayTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
+                    android:layout_marginEnd="3dp"
+                    android:layout_toStartOf="@+id/wednesdayDateTextView"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="2dp"
+
                     android:text="@string/wed"
                     android:textColor="@color/white"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/thursdayHeaderRelativeLayout"
+                android:layout_marginTop="15dp"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
                 android:layout_weight="2">
@@ -208,29 +216,31 @@
                     android:id="@+id/thursdayDateTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginRight="2dp"
+                    android:layout_marginEnd="1dp"
                     android:text=""
                     android:textColor="@color/white"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/thursdayTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
+                    android:layout_marginEnd="3dp"
+                    android:layout_toStartOf="@+id/thursdayDateTextView"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="2dp"
+
                     android:text="@string/thu"
                     android:textColor="@color/white"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/fridayHeaderRelativeLayout"
+                android:layout_marginTop="15dp"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
                 android:layout_weight="2">
@@ -239,28 +249,29 @@
                     android:id="@+id/fridayDateTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginRight="2dp"
+                    android:layout_marginEnd="1dp"
                     android:text=""
                     android:textColor="@color/white"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/fridayTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
+                    android:layout_marginEnd="3dp"
+                    android:layout_toStartOf="@+id/fridayDateTextView"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="2dp"
                     android:text="@string/fri"
                     android:textColor="@color/white"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
             </RelativeLayout>
 
             <RelativeLayout
+                android:layout_marginTop="15dp"
                 android:id="@+id/saturdayHeaderRelativeLayout"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
@@ -270,38 +281,40 @@
                     android:id="@+id/saturdayDateTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginRight="2dp"
+                    android:layout_marginEnd="1dp"
                     android:text=""
                     android:textColor="@color/white"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/saturdayTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
+                    android:layout_marginEnd="3dp"
+                    android:layout_toStartOf="@+id/saturdayDateTextView"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="2dp"
                     android:text="@string/sat"
                     android:textColor="@color/white"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
             </RelativeLayout>
         </LinearLayout>
 
         <View
             android:id="@+id/dividerView"
+            android:layout_marginTop="0dp"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/dayLabelsLinearLayout"
-            android:layout_marginTop="0dp"
+
             android:background="@color/medium_gray" />
 
         <ScrollView
             android:id="@+id/calendarScrollView"
+            android:layout_marginTop="0dp"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_below="@+id/dividerView"
@@ -337,25 +350,28 @@
                             android:id="@+id/time12amTextView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="false"
-                            android:layout_marginTop="0dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_alignParentEnd="false"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginEnd="5dp"
+
                             android:gravity="center"
+
+
                             android:text="@string/time12am"
                             android:textColor="@color/white"
-                            android:textSize="15dp" />
+                            android:textSize="15sp" />
 
                         <TextView
                             android:id="@+id/time1amTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginTop="60dp"
-                            android:layout_marginRight="6dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="66dp"
+                            android:layout_marginEnd="6dp"
                             android:gravity="center"
                             android:text="@string/time1am"
                             android:textColor="@color/white"
-                            android:textSize="15dp" />
+                            android:textSize="15sp" />
 
                         <TextView
                             android:id="@+id/time2amTextView"
@@ -921,6 +937,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:id="@+id/nav_view"
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_menu"/>
 </android.support.v4.widget.DrawerLayout>

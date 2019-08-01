@@ -12,6 +12,7 @@ import android.view.View;
 public class EventViews extends View {
 
     private Paint _paintDoodle = new Paint();
+
     private MyDate currentDate;
 
     private String mExampleString;
@@ -71,7 +72,10 @@ public class EventViews extends View {
 
     public void onDraw(Canvas canvas){
         super.onDraw(canvas);
-        canvas.drawRect(0,0,getWidth(),getHeight(),_paintDoodle);
+        //_paintDoodle.setStrokeWidth(1);
+        //_paintDoodle.setStyle(Paint.Style.STROKE);
+        //canvas.drawRect(0,0,getWidth(),getHeight(),_paintDoodle);
+        canvas.drawRoundRect(0,0,getWidth(),getHeight(),30,30,_paintDoodle);
 
         int paddingLeft = getPaddingLeft();
         int paddingTop = getPaddingTop();
