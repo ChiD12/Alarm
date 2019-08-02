@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view"
-    >
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_twoalarms"
-            android:icon="@drawable/ic_alarm_add_white"
-            android:title="Two Alarms" />
-    </group>
+    tools:showIn="navigation_view">
 
-    <item android:title="Communicate">
+    <item
+        android:id="@+id/navigation_divider"
+        android:title="Navigation">
         <menu>
             <item
-                android:id="@+id/nav_another"
-                android:icon="@drawable/ic_alarm_add_white"
-                android:title="Another" />
+                android:id="@+id/nav_gotocal"
+                android:icon="@drawable/ic_today_white"
+                android:title="Go to Calendar" />
         </menu>
     </item>
 
+
+    <item
+        android:id="@+id/divider"
+        android:title="Communicate">
+
+        <menu>
+            <item
+                android:id="@+id/nav_twoalarms"
+                android:icon="@drawable/ic_alarm_add_white"
+                android:title="Two Alarms" />
+
+        </menu>
+    </item>
 </menu>

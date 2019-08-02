@@ -1,26 +1,17 @@
 package com.example.alarm;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
-import android.app.Service;
-import android.content.ContentResolver;
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Build;
-import android.os.IBinder;
-import android.os.Looper;
-import android.os.Message;
 import android.provider.AlarmClock;
-import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -29,21 +20,17 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
-
-import org.w3c.dom.Text;
+import android.content.Intent;
 
 import java.io.File;
 import java.io.BufferedReader;
@@ -52,26 +39,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.Set;
-import java.util.logging.Handler;
-
-import me.everything.providers.android.calendar.CalendarProvider;
 
 
-import static android.provider.AlarmClock.ALARM_SEARCH_MODE_ALL;
-import static android.provider.AlarmClock.ALARM_SEARCH_MODE_LABEL;
 import static java.lang.Integer.parseInt;
-import static java.util.Calendar.TUESDAY;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
     static Intent openClockIntent;
@@ -91,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     public static boolean secondAlarmPressed;
     public static boolean justRead = false;
     public static boolean swticherBool = false;
+    Intent newactint;
 
 
     static public int firstBefore;
@@ -98,6 +74,10 @@ public class MainActivity extends AppCompatActivity {
     static public int isTwoAlarms;
 
     private float x1, x2, y1, y2;
+
+    private NavigationView navigationView;
+    public MenuItem twoAlarms;
+    public Menu menu;
 
     DrawerLayout DL;
 
@@ -129,6 +109,9 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
         //getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
 
         Button BT = (Button) findViewById(R.id.BT);
         final Button openClock = (Button) findViewById(R.id.clkBTN);
@@ -137,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
         secondText = (TextView) findViewById(R.id.seekTextBT2);
         secondSeek = (SeekBar) findViewById(R.id.seekBT2);
         newActivity = (Button) findViewById(R.id.newAct);
+        newactint =new Intent(MainActivity.this, Schedule.class);
 
         new Thread(new Runnable() {
             public void run() {
@@ -204,8 +188,6 @@ public class MainActivity extends AppCompatActivity {
                         if(secondAlarmPressed){
                             createAlarms(dateA,hoursBeforeSecondEvent,minutesBeforeSecondEvent);
                         }
-
-
                     }
                 }).start();
             }
@@ -340,7 +322,6 @@ public class MainActivity extends AppCompatActivity {
             newActivity.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent newactint = new Intent(MainActivity.this, Schedule.class);
                     startActivity(newactint);
                 }
             });
@@ -348,6 +329,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    /*@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        //getMenuInflater().inflate(R.menu.menu, menu);
+        // Create your menu...
+
+        this.menu = menu;
+        return true;
+    }*/
+
+
     public boolean onTouchEvent(MotionEvent touchevent){
         switch (touchevent.getAction()){
             case MotionEvent.ACTION_DOWN:
@@ -358,7 +351,6 @@ public class MainActivity extends AppCompatActivity {
                 x2 = touchevent.getX();
                 y2 = touchevent.getY();
                 if (x1 > x2){
-                    Intent newactint = new Intent(MainActivity.this, Schedule.class);
                     startActivity(newactint);
                     overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
                 }
@@ -441,15 +433,18 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.example_menu, menu);
+
+        this.menu = menu;
         return true;
 
 
     }
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(swticherBool){
             Log.e("second","turned false from switch");
@@ -469,7 +464,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     public static void calculateTimeBeforeEvent(MyDate change, int hourB){
         int currentDay = change.getDay();
@@ -578,16 +573,23 @@ public class MainActivity extends AppCompatActivity {
             swticherBool = false;
             secondAlarmPressed = false;
             isTwoAlarms = 0;
+
             secondSeek.setVisibility(View.INVISIBLE);
             secondText.setVisibility(View.INVISIBLE);
+            //menu.findItem(R.id.nav_twoalarms).setChecked(false);
+            //menu.findItem(R.id.nav_twoalarms).setTitle("One Alarm");
 
         }else if (split[2].equals("1")){
             Log.e("second","turned true from read");
             swticherBool = true;
             secondAlarmPressed = true;
             isTwoAlarms = 1;
+
+            Log.i("second","gothere");
             secondSeek.setVisibility(View.VISIBLE);
             secondText.setVisibility(View.VISIBLE);
+            //menu.findItem(R.id.nav_twoalarms).setChecked(true);
+            //menu.findItem(R.id.nav_twoalarms).setChecked(true);
         }else{
             Log.e("second", "neither 1 or 0");
         }
@@ -678,6 +680,39 @@ public class MainActivity extends AppCompatActivity {
 
         return phrase.toString();
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch(menuItem.getItemId()){
+            case R.id.nav_gotocal:
+                startActivity(newactint);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+                break;
+            case R.id.nav_twoalarms:
+                if(swticherBool){
+                    menuItem.setTitle("Two Alarms");
+                    Log.e("second","turned false from switch");
+                    secondAlarmPressed = false;
+                    swticherBool = false;
+                    secondSeek.setVisibility(View.INVISIBLE);
+                    secondText.setVisibility(View.INVISIBLE);
+                    writeCustom(false);
+
+                }else{
+                    menuItem.setTitle("One Alarm");
+                    Log.e("second","turned true from switch");
+                    secondAlarmPressed = true;
+                    swticherBool = true;
+                    secondSeek.setVisibility(View.VISIBLE);
+                    secondText.setVisibility(View.VISIBLE);
+                    writeCustom(true);
+                }
+                break;
+        }
+        DL.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
     public void onBackPressed(){   //overides the back button pressed to close drawer if open
         if(DL.isDrawerOpen(GravityCompat.START)){
             DL.closeDrawer(GravityCompat.START);
