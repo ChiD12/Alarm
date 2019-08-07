@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
 
+
         Button BT = (Button) findViewById(R.id.BT);
         final Button openClock = (Button) findViewById(R.id.clkBTN);
         text = (TextView) findViewById(R.id.seekTextBT);
@@ -330,15 +331,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    /*@Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         //getMenuInflater().inflate(R.menu.menu, menu);
         // Create your menu...
 
         this.menu = menu;
+
         return true;
-    }*/
+    }
 
 
     public boolean onTouchEvent(MotionEvent touchevent){
@@ -435,16 +437,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
 
         this.menu = menu;
+
         return true;
 
 
     }
-    /*@Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(swticherBool){
             Log.e("second","turned false from switch");
@@ -573,7 +576,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             swticherBool = false;
             secondAlarmPressed = false;
             isTwoAlarms = 0;
-
+            //twoAlarms.setTitle("Two Alarms");
             secondSeek.setVisibility(View.INVISIBLE);
             secondText.setVisibility(View.INVISIBLE);
             //menu.findItem(R.id.nav_twoalarms).setChecked(false);
@@ -584,7 +587,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             swticherBool = true;
             secondAlarmPressed = true;
             isTwoAlarms = 1;
-
+            //twoAlarms.setTitle("One Alarm");
             Log.i("second","gothere");
             secondSeek.setVisibility(View.VISIBLE);
             secondText.setVisibility(View.VISIBLE);

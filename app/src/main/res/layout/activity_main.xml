@@ -9,7 +9,7 @@
     android:background="@color/blueBG"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity"
-    tools:openDrawer="start"
+
     >
 
     <android.support.constraint.ConstraintLayout
@@ -54,13 +54,19 @@
             android:id="@+id/seekBT"
             style="@android:style/Widget.Material.Light.SeekBar"
             android:layout_width="0dp"
-            android:layout_height="17dp"
+            android:layout_height="35dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="17dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="17dp"
             android:layout_marginBottom="8dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:minHeight="20dp"
+            android:maxHeight="20dp"
             android:max="5"
             android:progress="1"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -85,7 +91,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.983" />
-    
+
         <SeekBar
             android:id="@+id/seekBT2"
             style="@android:style/Widget.Material.Light.SeekBar"
@@ -95,12 +101,13 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="17dp"
             android:layout_marginEnd="17dp"
-            android:layout_marginBottom="108dp"
+            android:layout_marginBottom="168dp"
             android:max="5"
             android:progress="1"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
     
         <Button

@@ -20,20 +20,31 @@
             android:layout_height="?attr/actionBarSize"
 
             android:background="@color/Transparent"
-            android:elevation="4dp"
+            android:elevation="15dp"
+
 
 
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:background="@color/blueDarker"
+            android:elevation="3dp"
+            android:translationZ="6dp"/>
 
         <LinearLayout
             android:id="@+id/dayLabelsLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="10dp"
-            android:baselineAligned="false">
+            android:layout_marginTop="14dp"
+            android:baselineAligned="false"
+            android:elevation="4dp"
+            android:translationZ="6dp">
+
+
 
 
             <RelativeLayout
@@ -135,7 +146,7 @@
                     android:gravity="center"
                     android:text="@string/mon"
                     android:textColor="@color/white"
-                    android:textSize="15dp"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
             </RelativeLayout>
 
@@ -301,7 +312,10 @@
                     android:textSize="15sp"
                     android:textStyle="bold" />
             </RelativeLayout>
+
         </LinearLayout>
+
+
 
         <View
             android:id="@+id/dividerView"

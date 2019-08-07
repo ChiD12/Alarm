@@ -75,7 +75,7 @@ public class EventViews extends View {
         //_paintDoodle.setStrokeWidth(1);
         //_paintDoodle.setStyle(Paint.Style.STROKE);
         //canvas.drawRect(0,0,getWidth(),getHeight(),_paintDoodle);
-        canvas.drawRoundRect(0,0,getWidth(),getHeight(),30,30,_paintDoodle);
+        canvas.drawRoundRect(5,10,getWidth()-5,getHeight()-5,20,20,_paintDoodle);
 
         int paddingLeft = getPaddingLeft();
         int paddingTop = getPaddingTop();

@@ -14,7 +14,8 @@
         android:theme="@style/AppTheme.NoActionBar"
         >
 
-        <activity android:name=".Schedule">
+        <activity android:name=".Schedule"
+            android:theme="@style/AppTheme.Schedule">
 
         </activity>
         <activity
