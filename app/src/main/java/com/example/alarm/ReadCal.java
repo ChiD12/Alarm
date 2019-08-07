@@ -57,7 +57,7 @@ public class ReadCal<cursor> {
         today.add(Calendar.MINUTE, largerM);
 
 
-        todayDate = createDateObj(today, "Today",today);
+        todayDate = createDateObj(today, "Today",today, 0);
         Log.i(todayDate.toString(),"hi");
     }
 
@@ -88,9 +88,10 @@ public class ReadCal<cursor> {
                 int id_3 = cursor.getColumnIndex(CalendarContract.Events.DURATION);
                 int id_4 = cursor.getColumnIndex(CalendarContract.Instances.BEGIN);
                 int id_5 = cursor.getColumnIndex(CalendarContract.Instances.END);
-                int id_6 = cursor.getColumnIndex(CalendarContract.Events.EXDATE);
+                int id_6 = cursor.getColumnIndex(CalendarContract.Events.EVENT_COLOR_KEY);
                 int id_7 = cursor.getColumnIndex(CalendarContract.Events.RDATE);
                 int id_8 = cursor.getColumnIndex(CalendarContract.Events.RRULE);
+
 
 
 
@@ -100,13 +101,15 @@ public class ReadCal<cursor> {
                 String repdate = cursor.getString(id_3);
                 String begValue = cursor.getString(id_4);
                 String end = cursor.getString(id_5);
-                String exdate = cursor.getString(id_6);
+                String color = cursor.getString(id_6);
                 String rdate = cursor.getString(id_7);
                 String rrule = cursor.getString(id_8);
 
 
 
-
+                if (color == null){
+                    color = "0";
+                }
 
 
 
@@ -117,6 +120,8 @@ public class ReadCal<cursor> {
                 thisEvent.get(Calendar.MONTH);
                 Date calendarDate = thisEvent.getTime(); //Changes Calendar to Date object for output
 
+                int colorint = Integer.parseInt(color);
+
                 endTime.setTimeInMillis(endLong);
 
 
@@ -125,9 +130,9 @@ public class ReadCal<cursor> {
 
 
 
-                MyDate current = createDateObj(thisEvent,titleValue,endTime);
+                MyDate current = createDateObj(thisEvent,titleValue,endTime, colorint);
 
-                Log.e(current.toString(),"hello");
+                Log.e(current.toString() + "  " + color + "end","hello");
 
                  if(thisEvent.after(today)) //to avoid adding an event that has already started, only add if this starting time of event is after now
                     dateAList.add(current);
@@ -139,7 +144,7 @@ public class ReadCal<cursor> {
 
         return dateAList;
     }
-    public MyDate createDateObj(Calendar cal, String name, Calendar end){ //creates a custom date object with seperated year/month/day/hour/minute variables
+    public MyDate createDateObj(Calendar cal, String name, Calendar end, int color){ //creates a custom date object with seperated year/month/day/hour/minute variables
 
         Date d = cal.getTime();
         Date dateEnd = end.getTime();
@@ -175,7 +180,7 @@ public class ReadCal<cursor> {
         long timeinmil = cal.getTimeInMillis();
         int dow = cal.get(Calendar.DAY_OF_WEEK);
 
-        return new MyDate(name,inty,intM,intd,inth,intm,dow, timeinmil,(ampmS.equals("PM")),endIntH,endIntM);
+        return new MyDate(name,inty,intM,intd,inth,intm,dow, timeinmil,(ampmS.equals("PM")),endIntH,endIntM, color);
     }
 
 }

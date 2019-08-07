@@ -14,8 +14,9 @@ public class MyDate {
     private boolean isPM;
     private int endHour;
     private int endMinute;
+    private int color;
 
-    public MyDate(String name, int y, int M, int d,int h, int m, int dow, long mil, boolean pm,int eH, int eM){
+    public MyDate(String name, int y, int M, int d,int h, int m, int dow, long mil, boolean pm,int eH, int eM, int color){
         setName(name);
         setYear(y);
         setMonth(M);
@@ -27,6 +28,7 @@ public class MyDate {
         setPM(pm);
         setEndHour(eH);
         setEndMinute(eM);
+        setColor(color);
     }
 
     public String getName() {
@@ -106,6 +108,12 @@ public class MyDate {
     }
     public void setEndMinute(int endMinute) {
         this.endMinute = endMinute;
+    }
+    public int getColor() {
+        return color;
+    }
+    public void setColor(int color) {
+        this.color = color;
     }
 
     public String toString(){

@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
@@ -17,7 +18,23 @@ public class EventViews extends View {
 
     private String mExampleString;
     private  String mExampleString2;
-    private int mExampleColor = Color.WHITE;
+    private int StringName;
+    private final int def = Color.DKGRAY; //null
+    Context context = getContext();
+    private final int LAVENDAR = ContextCompat.getColor(context, R.color.Lavendar); //1
+    private final int TURQUOISE  = ContextCompat.getColor(context, R.color.Turquoise); //2
+    private final int LIGHTPURPLE  = ContextCompat.getColor(context, R.color.LightPurple); //3
+    private final int LIGHTRED  = ContextCompat.getColor(context, R.color.LightRed); //4
+    private final int YELLOW  = ContextCompat.getColor(context, R.color.Yellow); //5
+    private final int ORANGE  = ContextCompat.getColor(context, R.color.Orange); //6
+    private final int LIGHTBLUE  = ContextCompat.getColor(context, R.color.LightBlue); //7
+    private final int GRAY  = ContextCompat.getColor(context, R.color.Gray); //8
+    private final int DARKBLUE  = ContextCompat.getColor(context, R.color.DarkBlue); //9
+    private final int GREEN  = ContextCompat.getColor(context, R.color.Green); //10
+    private final int RED  = ContextCompat.getColor(context, R.color.Red); //11
+
+
+
     private float mExampleDimension = 0;
     private Drawable mExampleDrawable;
 
@@ -46,7 +63,52 @@ public class EventViews extends View {
 
 
     private void init (AttributeSet attrs, int defstyle){
-        _paintDoodle.setColor(Color.DKGRAY);
+        int color = currentDate.getColor();
+        switch (color){
+            case 0:
+                _paintDoodle.setColor(def);
+                break;
+            case 1:
+                _paintDoodle.setColor(LAVENDAR);
+                break;
+            case 2:
+                _paintDoodle.setColor(TURQUOISE);
+                break;
+            case 3:
+                _paintDoodle.setColor(LIGHTPURPLE);
+                break;
+            case 4:
+                _paintDoodle.setColor(LIGHTRED);
+                break;
+            case 5:
+                _paintDoodle.setColor(YELLOW);
+                break;
+            case 6:
+                _paintDoodle.setColor(ORANGE);
+                break;
+            case 7:
+                _paintDoodle.setColor(LIGHTBLUE);
+                break;
+            case 8:
+                _paintDoodle.setColor(GRAY);
+                break;
+            case 9:
+                _paintDoodle.setColor(DARKBLUE);
+                break;
+            case 10:
+                _paintDoodle.setColor(GREEN);
+                break;
+            case 11:
+                _paintDoodle.setColor(RED);
+                break;
+
+        }
+        if(color == 0)
+            StringName = Color.WHITE;
+        else
+            StringName = Color.BLACK;
+
+        //_paintDoodle.setColor(Color.DKGRAY);
 
         mTextPaint = new TextPaint();
         mTextPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
@@ -62,7 +124,7 @@ public class EventViews extends View {
 
     private void invalidateTextPaintAndMeasurements() {
         mTextPaint.setTextSize(25);
-        mTextPaint.setColor(mExampleColor);
+        mTextPaint.setColor(StringName);
         mTextWidth = mTextPaint.measureText(mExampleString);
         mTextWidth2 = mTextPaint.measureText(mExampleString2);
 
