@@ -120,7 +120,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         seek = (SeekBar) findViewById(R.id.seekBT);
         secondText = (TextView) findViewById(R.id.seekTextBT2);
         secondSeek = (SeekBar) findViewById(R.id.seekBT2);
-        newActivity = (Button) findViewById(R.id.newAct);
         newactint =new Intent(MainActivity.this, Schedule.class);
 
         new Thread(new Runnable() {
@@ -320,12 +319,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-            newActivity.setOnClickListener(new View.OnClickListener() {
+            /*newActivity.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     startActivity(newactint);
                 }
-            });
+            });*/
 
 
 
