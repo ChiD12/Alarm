@@ -12,15 +12,22 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import static java.security.AccessController.getContext;
 
 public class Schedule extends AppCompatActivity {
 
@@ -58,6 +65,7 @@ public class Schedule extends AppCompatActivity {
     ScrollView top;
 
     private float x1, x2, y1, y2;
+    private long p1,p2;
 
     DrawerLayout DL;
 
@@ -65,6 +73,7 @@ public class Schedule extends AppCompatActivity {
     static int[] daysOfWeekA = new int[7];
     int dow;
     int dom;
+    Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,12 +103,35 @@ public class Schedule extends AppCompatActivity {
         friT = findViewById(R.id.fridayDateTextView);
         satT = findViewById(R.id.saturdayDateTextView);
         sunT = findViewById(R.id.sundayDateTextView);
+        View tv = findViewById(R.id.topview);
+
+        PopupMenu p  = new PopupMenu(this, null);
+        menu = p.getMenu();
+
+        CircularRevealRelativeLayout toplevel = findViewById(R.id.topLevel);
 
         top = findViewById(R.id.calendarScrollView);
+
+        tv.setLongClickable(true);
+        registerForContextMenu(tv);
 
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar2);
 
         setSupportActionBar(toolbar);
+
+
+
+        /*toplevel.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                Toast.makeText(Schedule.this,"longpress",Toast.LENGTH_SHORT).show();
+                getMenuInflater().inflate(R.menu.example_menu,menu);
+                return false;
+            }
+        }
+        );*/
+
 
 
         /*if(getSupportActionBar() != null){
@@ -123,6 +155,8 @@ public class Schedule extends AppCompatActivity {
                 return false;
             }
         });
+
+
 
         ReadCal cal = new ReadCal(getApplicationContext());
         weekEvents = cal.getEvents();
@@ -170,14 +204,23 @@ public class Schedule extends AppCompatActivity {
             case MotionEvent.ACTION_DOWN:
                 x1 = touchevent.getX();
                 y1 = touchevent.getY();
+                //p1 = System.currentTimeMillis();
                 break;
             case MotionEvent.ACTION_UP:
                 x2 = touchevent.getX();
                 y2 = touchevent.getY();
+                p2 = System.currentTimeMillis();
                 if (x1 < x2 &&  Math.abs(y2 - y1) <100){
                     finish();
                 }
+                /*if (p2-p1 > 1){
+                    Toast.makeText(this,"longpress",Toast.LENGTH_SHORT).show();
+                    getMenuInflater().inflate(R.menu.example_menu,menu);
+                }*/
                 break;
+
+
+
         }
         return false;
     }
@@ -384,5 +427,27 @@ public class Schedule extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        getMenuInflater().inflate(R.menu.example_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item1:
+                Toast.makeText(this,"make alarms",Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.createEvent:
+                Toast.makeText(this,"make event",Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+
+
+    }
 }
 

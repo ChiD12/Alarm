@@ -21,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.HapticFeedbackConstants;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -225,35 +226,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 switch (progress){
-                    case 0: text.setText("Time before event: 30 Minutes");
+                    case 0: text.setText("30 Minutes");
                             hoursBeforeEvent =0;
                             minutesBeforeEvent = 30;
                             writeCustom("first", 0);
+                            seek.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                             break;
-                    case 1: text.setText("Time before event: 1 Hour");
+                    case 1: text.setText("1 Hour");
                             hoursBeforeEvent =1;
                             minutesBeforeEvent = 0;
                             writeCustom("first", 1);
+                            seek.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                             break;
-                    case 2: text.setText("Time before event: 1 Hour and 30 Minutes");
+                    case 2: text.setText("1 Hour and 30 Minutes");
                             hoursBeforeEvent =1;
                             minutesBeforeEvent = 30;
                             writeCustom("first", 2);
+                            seek.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                             break;
-                    case 3: text.setText("Time before event: 2 Hours");
+                    case 3: text.setText("2 Hours");
                             hoursBeforeEvent =2;
                             minutesBeforeEvent = 0;
                             writeCustom("first", 3);
+                            seek.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                             break;
-                    case 4: text.setText("Time before event: 2 Hours and 30 Minutes");
+                    case 4: text.setText("2 Hours and 30 Minutes");
                             hoursBeforeEvent =2;
                             minutesBeforeEvent = 30;
                             writeCustom("first", 4);
+                            seek.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                             break;
-                    case 5: text.setText("Time before event: 3 Hours");
+                    case 5: text.setText("3 Hours");
                             hoursBeforeEvent =3;
                             minutesBeforeEvent = 0;
                             writeCustom("first", 5);
+                            seek.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                             break;
                 }
             }
@@ -272,35 +279,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 switch (progress){
-                    case 0: secondText.setText("Time before event: 30 Minutes");
+                    case 0: secondText.setText("30 Minutes");
                             hoursBeforeSecondEvent =0;
                             minutesBeforeSecondEvent = 30;
                             writeCustom("second", 0);
+                            secondSeek.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                             break;
-                    case 1: secondText.setText("Time before event: 1 Hour");
+                    case 1: secondText.setText("1 Hour");
                             hoursBeforeSecondEvent =1;
                             minutesBeforeSecondEvent = 0;
                             writeCustom("second", 1);
+                            secondSeek.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                             break;
-                    case 2: secondText.setText("Time before event: 1 Hour and 30 Minutes");
+                    case 2: secondText.setText("1 Hour and 30 Minutes");
                             hoursBeforeSecondEvent =1;
                             minutesBeforeSecondEvent = 30;
                             writeCustom("second", 2);
+                            secondSeek.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                             break;
-                    case 3: secondText.setText("Time before event: 2 Hours");
+                    case 3: secondText.setText("2 Hours");
                             hoursBeforeSecondEvent =2;
                             minutesBeforeSecondEvent = 0;
                             writeCustom("second", 3);
+                            secondSeek.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                             break;
-                    case 4: secondText.setText("Time before event: 2 Hours and 30 Minutes");
+                    case 4: secondText.setText("2 Hours and 30 Minutes");
                             hoursBeforeSecondEvent =2;
                             minutesBeforeSecondEvent = 30;
                             writeCustom("second", 4);
+                            secondSeek.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                             break;
-                    case 5: secondText.setText("Time before event: 3 Hours");
+                    case 5: secondText.setText("3 Hours");
                             hoursBeforeSecondEvent =3;
                             minutesBeforeSecondEvent = 0;
                             writeCustom("second", 5);
+                            secondSeek.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                             break;
                 }
             }

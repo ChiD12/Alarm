@@ -18,20 +18,55 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView2"
-            android:layout_width="188dp"
-            android:layout_height="48dp"
+            android:id="@+id/allEventsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/baloo"
+            android:text="Set Alarms For Every Event"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.906"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clkBTN"
+            app:layout_constraintVertical_bias="0.207" />
+
+        <TextView
+            android:id="@+id/topText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Set alarms for the first event for the next seven days"
+            android:fontFamily="@font/baloo"
+            android:text="Set Alarms For the Week"
+            android:textColor="@color/colorAccent"
+            android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="@+id/fragment_container"
-            app:layout_constraintEnd_toStartOf="@+id/BT"
-            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.487"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/toolbar"
-            app:layout_constraintVertical_bias="0.134" />
+            app:layout_constraintVertical_bias="0.081" />
+
+        <TextView
+            android:id="@+id/firstEventText"
+            android:layout_width="168dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/baloo"
+            android:gravity="center"
+            android:text="Set Alarms For the First Event of the Day"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_container"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/BT"
+            app:layout_constraintVertical_bias="0.212" />
 
         <View
             android:id="@+id/divider4"
@@ -39,34 +74,18 @@
             android:layout_height="2dp"
             android:layout_marginBottom="8dp"
             android:background="@color/colorAccent"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/fragment_container"
             app:layout_constraintTop_toTopOf="@+id/toolbar"
-            app:layout_constraintVertical_bias="0.263"
-            tools:layout_editor_absoluteX="16dp" />
+            app:layout_constraintVertical_bias="0.61"
+            tools:layout_editor_absoluteX="0dp" />
 
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="-16dp"
-            tools:layout_editor_absoluteY="250dp"/>
-
-        <View
-            android:id="@+id/divider3"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-
-            android:background="@color/colorAccent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/toolbar"
-            app:layout_constraintVertical_bias="0.433" />
+            tools:layout_editor_absoluteX="298dp"
+            tools:layout_editor_absoluteY="0dp" />
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -88,14 +107,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="324dp"
+            android:layout_marginTop="188dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/baloo"
             android:text="Time before event: 1 Hour"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_container"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
         <SeekBar
             android:id="@+id/seekBT"
             style="@android:style/Widget.Material.Light.SeekBar"
@@ -107,20 +129,21 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="17dp"
             android:layout_marginBottom="8dp"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:minHeight="20dp"
-            android:maxHeight="20dp"
             android:max="5"
+            android:maxHeight="20dp"
+            android:minHeight="20dp"
+            android:paddingLeft="30dp"
+            android:paddingTop="10dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="10dp"
             android:progress="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/seekTextBT"
             app:layout_constraintVertical_bias="0.0" />
-    
+
         <TextView
             android:id="@+id/seekTextBT2"
             android:layout_width="wrap_content"
@@ -129,14 +152,14 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
+            android:fontFamily="@font/baloo"
             android:text="Time before event: 1 Hour"
             android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/seekBT2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.983" />
+            app:layout_constraintVertical_bias="0.965" />
 
         <SeekBar
             android:id="@+id/seekBT2"
@@ -146,15 +169,18 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="17dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="17dp"
-            android:layout_marginBottom="168dp"
+            android:layout_marginBottom="320dp"
             android:max="5"
             android:progress="1"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/toolbar"
+            app:layout_constraintVertical_bias="0.884" />
 
         <Button
             android:id="@+id/BT"
@@ -162,14 +188,16 @@
             android:layout_width="104dp"
             android:layout_height="59dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="88dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:text="SET ALARMS"
             android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_container"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.886"
+            app:layout_constraintHorizontal_bias="0.14"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/fragment_container" />
+            app:layout_constraintTop_toTopOf="@+id/fragment_container"
+            app:layout_constraintVertical_bias="0.792" />
 
 
         <Button
@@ -178,7 +206,7 @@
             android:layout_width="104dp"
             android:layout_height="59dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:text="Open Clock"
@@ -186,10 +214,10 @@
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.886"
+            app:layout_constraintHorizontal_bias="0.831"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/BT"
-            app:layout_constraintVertical_bias="0.07" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.787" />
 
     </android.support.constraint.ConstraintLayout>
     
