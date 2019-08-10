@@ -190,7 +190,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="SET ALARMS"
+            android:text="Set Alarms"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/fragment_container"
             app:layout_constraintEnd_toEndOf="parent"
@@ -209,12 +209,12 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Open Clock"
+            android:text="Set All Alarms"
             android:textColor="@color/white"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.831"
+            app:layout_constraintHorizontal_bias="0.835"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.787" />
@@ -229,6 +229,7 @@
         app:headerLayout="@layout/nav_header"
         app:itemTextColor="@color/white"
         app:itemIconTint="@color/white"
+        app:itemTextAppearance="@color/white"
         app:menu="@menu/drawer_menu"/>
 
 </android.support.v4.widget.DrawerLayout>

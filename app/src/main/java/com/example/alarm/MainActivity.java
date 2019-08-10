@@ -19,7 +19,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.style.TextAppearanceSpan;
 import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.Menu;
@@ -159,6 +161,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }).start();
 
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        Menu menu = navigationView.getMenu();
+
+        MenuItem tools= menu.findItem(R.id.navigation_divider);
+        MenuItem options= menu.findItem(R.id.divider);
+
+        SpannableString s = new SpannableString(tools.getTitle());
+        s.setSpan(new TextAppearanceSpan(this, R.style.TextAppearance44), 0, s.length(), 0);
+        tools.setTitle(s);
+
+        SpannableString n = new SpannableString(options.getTitle());
+        n.setSpan(new TextAppearanceSpan(this, R.style.TextAppearance44), 0, n.length(), 0);
+        options.setTitle(n);
+
+        navigationView.setNavigationItemSelectedListener(this);
 
 
 
@@ -169,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         BT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                seek.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
 
                 new Thread(new Runnable() {
                     public void run() {
@@ -181,13 +199,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         ReadCal cal = new ReadCal(getApplicationContext());
                         ArrayList<MyDate> dateA =  cal.getEvents();
 
-                        int firstHourofDay= Integer.MAX_VALUE;
-                        int firstMinuteofDay = Integer.MAX_VALUE;
 
 
-                        createAlarms(dateA,hoursBeforeEvent,minutesBeforeEvent);
+
+                        createAlarms(dateA,hoursBeforeEvent,minutesBeforeEvent,false);
                         if(secondAlarmPressed){
-                            createAlarms(dateA,hoursBeforeSecondEvent,minutesBeforeSecondEvent);
+                            createAlarms(dateA,hoursBeforeSecondEvent,minutesBeforeSecondEvent,false);
                         }
                     }
                 }).start();
@@ -197,28 +214,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         openClock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent;
+                seek.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                new Thread(new Runnable() {
+                    public void run() {
+                        // a potentially time consuming task
 
-                try{
-                    intent = getPackageManager().getLaunchIntentForPackage("com.google.android.deskclock");
-                    startActivity(intent);
-                }catch (Exception e) { }
+                        String filepath = "config.txt";
+                        File test = new File(filepath);
+                        Log.e(""+test.exists(),"test io");
+                        ReadCal cal = new ReadCal(getApplicationContext());
+                        ArrayList<MyDate> dateA =  cal.getEvents();
 
-                try{
-                    intent = getPackageManager().getLaunchIntentForPackage("com.oneplus.deskclock");
-                    startActivity(intent);
-                }catch (Exception e){}
 
-                try{
-                    intent = getPackageManager().getLaunchIntentForPackage("com.sec.android.app.clockpackage");
-                    startActivity(intent);
-                }catch (Exception e){}
 
-                /*if(intent.resolveActivity(getPackageManager()) != null){
-                    startActivity(intent);
-                }else{
-                    Toast.makeText(getApplicationContext(),"Clock app not added",Toast.LENGTH_SHORT).show();
-                }*/
+
+                        createAlarms(dateA,hoursBeforeEvent,minutesBeforeEvent,true);
+                        if(secondAlarmPressed){
+                            createAlarms(dateA,hoursBeforeSecondEvent,minutesBeforeSecondEvent,true);
+                        }
+                    }
+                }).start();
 
             }
         });
@@ -356,33 +371,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     public boolean onTouchEvent(MotionEvent touchevent){
-        switch (touchevent.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                x1 = touchevent.getX();
-                y1 = touchevent.getY();
-                break;
-            case MotionEvent.ACTION_UP:
-                x2 = touchevent.getX();
-                y2 = touchevent.getY();
-                if (x1 > x2){
-                    startActivity(newactint);
-                    overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
-                }
-                break;
+        if(!DL.isDrawerOpen(GravityCompat.START)){
+            switch (touchevent.getAction()){
+                case MotionEvent.ACTION_DOWN:
+                    x1 = touchevent.getX();
+                    y1 = touchevent.getY();
+                    break;
+                case MotionEvent.ACTION_UP:
+                    x2 = touchevent.getX();
+                    y2 = touchevent.getY();
+                    if (x1 > x2){
+                        startActivity(newactint);
+                        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+                    }
+                    break;
+            }
         }
         return false;
     }
 
 
 
-    public void createAlarms(ArrayList<MyDate> dateA, int hourB, int minuteB){
+    public void createAlarms(ArrayList<MyDate> dateA, int hourB, int minuteB, boolean all){
         int dateCreated=0;
 
         for (int i = 0; i < dateA.size(); i++) {
             if(dateA.get(i) != null){
                 Log.i(dateA.get(i).toString(),"s");
 
-                if(dateA.get(i).getDay() != dateCreated){
+                if(dateA.get(i).getDay() != dateCreated || all){ //only creates for the first event of the day or if all button is pressed
 
                     Log.e("set alarm for", dateA.get(i).toString());
                     calculateTimeBeforeEvent(dateA.get(i),hourB);
@@ -700,10 +717,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch(menuItem.getItemId()){
             case R.id.nav_gotocal:
+                seek.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 startActivity(newactint);
                 overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
                 break;
+            case R.id.nav_gotoclock:
+                Intent intent;
+                seek.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                try{
+                    intent = getPackageManager().getLaunchIntentForPackage("com.google.android.deskclock");
+                    startActivity(intent);
+                }catch (Exception e) { }
+
+                try{
+                    intent = getPackageManager().getLaunchIntentForPackage("com.oneplus.deskclock");
+                    startActivity(intent);
+                }catch (Exception e){}
+
+                try{
+                    intent = getPackageManager().getLaunchIntentForPackage("com.sec.android.app.clockpackage");
+                    startActivity(intent);
+                }catch (Exception e){}
+                break;
             case R.id.nav_twoalarms:
+                seek.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 if(swticherBool){
                     menuItem.setTitle("Two Alarms");
                     Log.e("second","turned false from switch");

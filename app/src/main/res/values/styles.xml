@@ -52,4 +52,9 @@
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
+    <style name="TextAppearance44">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
 </resources>

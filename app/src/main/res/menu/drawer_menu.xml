@@ -12,6 +12,10 @@
                 android:id="@+id/nav_gotocal"
                 android:icon="@drawable/ic_today_white"
                 android:title="Go to Calendar" />
+            <item
+                android:id="@+id/nav_gotoclock"
+                android:icon="@drawable/ic_alarm_black_24dp"
+                android:title="Go to Clock"/>
         </menu>
     </item>
 
