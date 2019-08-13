@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-        Menu menu = navigationView.getMenu();
+        Menu menu = navigationView.getMenu(); // set text color for navigation menu
 
         MenuItem tools= menu.findItem(R.id.navigation_divider);
         MenuItem options= menu.findItem(R.id.divider);
@@ -191,7 +191,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 new Thread(new Runnable() {
                     public void run() {
-                        // a potentially time consuming task
 
                         String filepath = "config.txt";
                         File test = new File(filepath);
