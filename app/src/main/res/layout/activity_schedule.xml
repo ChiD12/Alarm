@@ -56,7 +56,7 @@
                 android:id="@+id/currentMonthRelativeLayout"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
-                android:layout_weight="1.2">
+                android:layout_weight="1.4">
 
                 <TextView
                     android:id="@+id/currentMonthTextView"
@@ -87,7 +87,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
-                android:layout_weight="2">
+                android:layout_weight="2"
+                android:layout_marginStart="1dp">
 
                 <TextView
                     android:id="@+id/sundayDateTextView"
@@ -110,13 +111,13 @@
                     android:layout_alignParentBottom="true"
 
                     android:text="@string/sun"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorAccent"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <View
                     android:id="@+id/dayMarkerView"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_alignParentBottom="true"
                     android:background="@color/colorAccent" />
@@ -150,7 +151,7 @@
                     android:layout_alignParentBottom="true"
                     android:gravity="center"
                     android:text="@string/mon"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorAccent"
                     android:textSize="14sp"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -183,7 +184,7 @@
                     android:layout_alignParentBottom="true"
 
                     android:text="@string/tue"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorAccent"
                     android:textSize="15sp"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -216,7 +217,7 @@
                     android:layout_alignParentBottom="true"
 
                     android:text="@string/wed"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorAccent"
                     android:textSize="15sp"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -249,7 +250,7 @@
                     android:layout_alignParentBottom="true"
 
                     android:text="@string/thu"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorAccent"
                     android:textSize="15sp"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -281,7 +282,7 @@
                     android:layout_toStartOf="@+id/fridayDateTextView"
                     android:layout_alignParentBottom="true"
                     android:text="@string/fri"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorAccent"
                     android:textSize="15sp"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -313,7 +314,7 @@
                     android:layout_toStartOf="@+id/saturdayDateTextView"
                     android:layout_alignParentBottom="true"
                     android:text="@string/sat"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorAccent"
                     android:textSize="15sp"
                     android:textStyle="bold" />
             </RelativeLayout>

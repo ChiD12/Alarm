@@ -1,6 +1,7 @@
 package com.example.alarm;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
@@ -8,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Build;
 import android.provider.AlarmClock;
 import android.support.annotation.NonNull;
@@ -61,15 +63,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     static int defWakeUp;
     static boolean daybefore = false;
     final int MY_PERMISSIONS_REQUEST_READ_CALENDAR = 5;
-    private TextView text;
-    private SeekBar seek;
-    private TextView secondText;
-    private SeekBar secondSeek;
-    private Button newActivity;
+    public TextView text;
+    public SeekBar seek;
+    public TextView secondText;
+    public SeekBar secondSeek;
     public static boolean secondAlarmPressed;
-    public static boolean justRead = false;
     public static boolean swticherBool = false;
     Intent newactint;
+    Activity scheduleActivity;
+    private LocationManager locationManager;
+
+
 
 
     static public int firstBefore;
@@ -161,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }).start();
 
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
 
         Menu menu = navigationView.getMenu(); // set text color for navigation menu
 
@@ -178,7 +182,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String value = extras.getString("CHANGE_UI");
+            if(value.equals("false")){
+                changeSecondSeekFalse();
+            }
+            if(value.equals("true")){
+                changeSecondSeekTrue();
+            }
+        }
 
         //testchange
         hoursBeforeEvent = 1;
@@ -771,5 +784,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onBackPressed();
         }
     }
+    public void changeSecondSeekFalse(){
+        secondSeek.setVisibility(View.INVISIBLE);
+        secondText.setVisibility(View.INVISIBLE);
+        writeCustom(false);
+    }
+    public void changeSecondSeekTrue(){
+        secondSeek.setVisibility(View.VISIBLE);
+        secondText.setVisibility(View.VISIBLE);
+        writeCustom(true);
+    }
+
+
+
 
 }

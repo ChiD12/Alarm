@@ -3,16 +3,21 @@ package com.example.alarm;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.AlarmClock;
+import android.support.annotation.NonNull;
 import android.support.design.circularreveal.CircularRevealRelativeLayout;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.style.TextAppearanceSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.HapticFeedbackConstants;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -29,7 +34,7 @@ import java.util.Calendar;
 
 import static java.security.AccessController.getContext;
 
-public class Schedule extends AppCompatActivity {
+public class Schedule extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     Calendar now;
     LinearLayout nowBar;
@@ -74,11 +79,17 @@ public class Schedule extends AppCompatActivity {
     int dow;
     int dom;
     Menu menu;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
+
+        now = Calendar.getInstance();
+
+        dow = now.get(Calendar.DAY_OF_WEEK); //today's weekday
+        dom = now.get(Calendar.DAY_OF_MONTH); // today's day of month
 
         mon = (RelativeLayout) findViewById(R.id.mondayRelativeLayout);  //relative layout containers per day
         tues = (RelativeLayout) findViewById(R.id.tuesdayRelativeLayout);
@@ -116,37 +127,16 @@ public class Schedule extends AppCompatActivity {
         registerForContextMenu(tv);
 
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar2);
-
+        setDay(dow,toolbar);
         setSupportActionBar(toolbar);
 
-
-
-        /*toplevel.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-
-                Toast.makeText(Schedule.this,"longpress",Toast.LENGTH_SHORT).show();
-                getMenuInflater().inflate(R.menu.example_menu,menu);
-                return false;
-            }
-        }
-        );*/
-
-
-
-        /*if(getSupportActionBar() != null){
-            getSupportActionBar().setTitle("");
-        }*/
-
-
-
         DL = findViewById(R.id.drawer_layout);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,DL, toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
-
 
         DL.addDrawerListener(toggle);
         toggle.syncState();
+
+        DL = findViewById(R.id.drawer_layout);
 
         top.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -156,19 +146,34 @@ public class Schedule extends AppCompatActivity {
             }
         });
 
-
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(Schedule.this);
 
         ReadCal cal = new ReadCal(getApplicationContext());
         weekEvents = cal.getEvents();
 
-        now = Calendar.getInstance();
+        Menu menu = navigationView.getMenu(); // set text color for navigation menu
+
+        MenuItem tools= menu.findItem(R.id.navigation_divider);
+        MenuItem options= menu.findItem(R.id.divider);
+
+        SpannableString s = new SpannableString(tools.getTitle());
+        s.setSpan(new TextAppearanceSpan(this, R.style.TextAppearance44), 0, s.length(), 0);
+        tools.setTitle(s);
+
+        SpannableString n = new SpannableString(options.getTitle());
+        n.setSpan(new TextAppearanceSpan(this, R.style.TextAppearance44), 0, n.length(), 0);
+        options.setTitle(n);
+
+        navigationView.setNavigationItemSelectedListener(this);
+
+
 
 
         nowBar = (LinearLayout) findViewById(R.id.currentTimeMarkerLinearLayout);
         currentLineTimeView = (View) findViewById(R.id.currentTimeLineView);
         dayOfTheWeekBar = findViewById(R.id.dayMarkerView);
-        dow = now.get(Calendar.DAY_OF_WEEK); //today's weekday
-        dom = now.get(Calendar.DAY_OF_MONTH); // today's day of month
+
 
         Calendar domLowerCal = (Calendar) now.clone(); //to get the date of previous days
         Calendar domHigherCal = (Calendar) now.clone(); //to get the date of the next couple days
@@ -446,8 +451,97 @@ public class Schedule extends AppCompatActivity {
             default:
                 return super.onContextItemSelected(item);
         }
+    }
+    private void setDay(int DOW,android.support.v7.widget.Toolbar toolbar){
+        switch (dow){
+            case Calendar.SUNDAY:
+                toolbar.setTitle("Sunday");
+                break;
+            case Calendar.MONDAY:
+                toolbar.setTitle("Monday");
+                break;
+            case Calendar.TUESDAY:
+                toolbar.setTitle("Tuesday");
+                break;
+            case Calendar.WEDNESDAY:
+                toolbar.setTitle("Wednesday");
+                break;
+            case Calendar.THURSDAY:
+                toolbar.setTitle("Thursday");
+                break;
+            case Calendar.FRIDAY:
+                toolbar.setTitle("Friday");
+                break;
+            case Calendar.SATURDAY:
+                toolbar.setTitle("Saturday");
+                break;
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        //getMenuInflater().inflate(R.menu.menu, menu);
+        // Create your menu...
+
+        this.menu = menu;
+
+        return true;
+    }
 
 
+
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch(menuItem.getItemId()){
+            case R.id.nav_gotocal:
+                tuesT.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                finish();
+                break;
+            case R.id.nav_gotoclock:
+                Intent intent;
+                tuesT.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                try{
+                    intent = getPackageManager().getLaunchIntentForPackage("com.google.android.deskclock");
+                    startActivity(intent);
+                }catch (Exception e) { }
+
+                try{
+                    intent = getPackageManager().getLaunchIntentForPackage("com.oneplus.deskclock");
+                    startActivity(intent);
+                }catch (Exception e){}
+
+                try{
+                    intent = getPackageManager().getLaunchIntentForPackage("com.sec.android.app.clockpackage");
+                    startActivity(intent);
+                }catch (Exception e){}
+                break;
+            case R.id.nav_twoalarms:
+                tuesT.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                if(MainActivity.swticherBool){
+                    menuItem.setTitle("Two Alarms");
+                    Log.e("second","turned false from switch");
+                    MainActivity.secondAlarmPressed = false;
+                    MainActivity.swticherBool = false;
+                    Intent intent2 = new Intent(getBaseContext(), MainActivity.class);
+                    intent2.putExtra("CHANGE_UI", "false");
+                    startActivity(intent2);
+
+                }else{
+                    menuItem.setTitle("One Alarm");
+                    Log.e("second","turned true from switch");
+                    MainActivity.secondAlarmPressed = true;
+                    MainActivity.swticherBool = true;
+                    Intent intent3 = new Intent(getBaseContext(), MainActivity.class);
+                    intent3.putExtra("CHANGE_UI", "true");
+                    startActivity(intent3);
+                }
+                break;
+        }
+        DL.closeDrawer(GravityCompat.START);
+        return true;
     }
 }
 
