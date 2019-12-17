@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.text.TextPaint;
@@ -143,6 +144,7 @@ public class EventViews extends View {
     private void invalidateTextPaintAndMeasurements() {
         mTextPaint.setTextSize(25);
         mTextPaint.setColor(StringName);
+        mTextPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
         mTextWidth = mTextPaint.measureText(mExampleString);
         mTextWidth2 = mTextPaint.measureText(mExampleString2);
 
@@ -170,19 +172,23 @@ public class EventViews extends View {
             double half= Math.ceil((double)sArray.length/2);
             sb.delete(0,sb.length());
             for (int i = 0; i < half; i++) {
-                sb.append(" ");
                 sb.append(sArray[i]);
-
+                if(i != half-1){
+                    sb.append(" ");
+                }
             }
 
+            float firstLineWidth = mTextPaint.measureText(sb.toString());
             canvas.drawText(sb.toString(),
-                    paddingLeft  + 3,
+                    paddingLeft + (contentWidth - firstLineWidth) / 2,
                     paddingTop -30 + (contentHeight + mTextHeight) / 2,
                     mTextPaint);
             sb.delete(0,sb.length());
             for (int i = (int)half; i < sArray.length; i++) {
-                sb.append(" ");
                 sb.append(sArray[i]);
+                if(i != half-1) {
+                    sb.append(" ");
+                }
             }
             float secondLineWidth = mTextPaint.measureText(sb.toString());
             canvas.drawText(sb.toString(),
