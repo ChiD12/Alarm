@@ -8,6 +8,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Build;
@@ -85,8 +86,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     public MenuItem twoAlarms;
     public Menu menu;
+    public MenuItem item;
 
     DrawerLayout DL;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,10 +171,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-        Menu menu = navigationView.getMenu(); // set text color for navigation menu
+        menu = navigationView.getMenu(); // set text color for navigation menu
 
         MenuItem tools= menu.findItem(R.id.navigation_divider);
         MenuItem options= menu.findItem(R.id.divider);
+        item = menu.findItem(R.id.nav_twoalarms);
 
         SpannableString s = new SpannableString(tools.getTitle());
         s.setSpan(new TextAppearanceSpan(this, R.style.TextAppearance44), 0, s.length(), 0);
@@ -182,16 +187,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView.setNavigationItemSelectedListener(this);
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            String value = extras.getString("CHANGE_UI");
+        /*Bundle extras = getIntent().getExtras(); //to receive intent from schedule
+
+        SharedPreferences bb = getSharedPreferences("my_prefs", 0);
+        String value = bb.getString("CHANGE_UI", "");
+        Toast.makeText(this,"value",Toast.LENGTH_SHORT).show();
+        if (value != null) {
+            //String value = extras.getString("CHANGE_UI");
             if(value.equals("false")){
+                Toast.makeText(this,"got in false " + value,Toast.LENGTH_SHORT).show();
                 changeSecondSeekFalse();
             }
             if(value.equals("true")){
+                Toast.makeText(this,"got in true + value",Toast.LENGTH_SHORT).show();
                 changeSecondSeekTrue();
             }
-        }
+        }*/
 
         //testchange
         hoursBeforeEvent = 1;
@@ -462,12 +473,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             e.printStackTrace();
                         }
                     }
-
-
                     dateCreated = dateA.get(i).getDay();
-
                 }
-
             }
             else
                 break;
@@ -475,40 +482,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
-
-
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-
-        this.menu = menu;
-
-        return true;
-
-
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(swticherBool){
-            Log.e("second","turned false from switch");
-            secondAlarmPressed = false;
-            swticherBool = false;
-            secondSeek.setVisibility(View.INVISIBLE);
-            secondText.setVisibility(View.INVISIBLE);
-            writeCustom(false);
-
-        }else{
-            Log.e("second","turned true from switch");
-            secondAlarmPressed = true;
-            swticherBool = true;
-            secondSeek.setVisibility(View.VISIBLE);
-            secondText.setVisibility(View.VISIBLE);
-            writeCustom(true);
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
 
     public static void calculateTimeBeforeEvent(MyDate change, int hourB){
         int currentDay = change.getDay();
@@ -617,7 +590,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             swticherBool = false;
             secondAlarmPressed = false;
             isTwoAlarms = 0;
-            //twoAlarms.setTitle("Two Alarms");
+            item.setTitle("Two Alarms");
             secondSeek.setVisibility(View.INVISIBLE);
             secondText.setVisibility(View.INVISIBLE);
             //menu.findItem(R.id.nav_twoalarms).setChecked(false);
@@ -628,7 +601,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             swticherBool = true;
             secondAlarmPressed = true;
             isTwoAlarms = 1;
-            //twoAlarms.setTitle("One Alarm");
+            item.setTitle("One Alarm");
             Log.i("second","gothere");
             secondSeek.setVisibility(View.VISIBLE);
             secondText.setVisibility(View.VISIBLE);
@@ -794,8 +767,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         secondText.setVisibility(View.VISIBLE);
         writeCustom(true);
     }
-
-
-
 
 }

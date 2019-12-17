@@ -18,6 +18,7 @@ public class EventViews extends View {
 
     private String mExampleString;
     private  String mExampleString2;
+    private  String mExampleString3;
     private int StringName;
     private final int def = Color.DKGRAY; //null
     Context context = getContext();
@@ -33,6 +34,8 @@ public class EventViews extends View {
     private final int GREEN  = ContextCompat.getColor(context, R.color.Green); //10
     private final int RED  = ContextCompat.getColor(context, R.color.Red); //11
 
+    StringBuilder sb;
+
 
 
     private float mExampleDimension = 0;
@@ -47,18 +50,21 @@ public class EventViews extends View {
         super(context);
         currentDate = date;
         init(null,0);
+        sb = new StringBuilder();
     }
 
     public EventViews(Context context, AttributeSet attrs,MyDate date) {
         super(context, attrs);
         currentDate = date;
         init(attrs,0);
+        sb = new StringBuilder();
     }
 
     public EventViews(Context context, AttributeSet attrs, int defStyleAttr, MyDate date) {
         super(context, attrs, defStyleAttr);
         currentDate = date;
         init(attrs,defStyleAttr);
+        sb = new StringBuilder();
     }
 
 
@@ -115,7 +121,19 @@ public class EventViews extends View {
         mTextPaint.setTextAlign(Paint.Align.LEFT);
 
         mExampleString = currentDate.getName();
-        mExampleString2 = currentDate.getHour() +":"+currentDate.getMinute() + " - " + currentDate.getEndHour()+":"+currentDate.getEndMinute();
+        if(currentDate.getHour()>12){
+            mExampleString2 = currentDate.getHour()-12 +":"+currentDate.getMinute();
+        }else{
+            mExampleString2 = currentDate.getHour() +":"+currentDate.getMinute();
+        }
+        if(currentDate.getEndHour() > 12){
+            mExampleString3 = currentDate.getEndHour()-12+":"+currentDate.getEndMinute();
+        }else{
+            mExampleString3 = currentDate.getEndHour()+":"+currentDate.getEndMinute();
+        }
+
+
+
 
         // Update TextPaint and text measurements from attributes
         invalidateTextPaintAndMeasurements();
@@ -147,15 +165,53 @@ public class EventViews extends View {
         int contentWidth = getWidth() - paddingLeft - paddingRight;
         int contentHeight = getHeight() - paddingTop - paddingBottom;
 
-        canvas.drawText(mExampleString,
-                paddingLeft + (contentWidth - mTextWidth) / 2,
-                paddingTop + (contentHeight + mTextHeight) / 2,
-                mTextPaint);
+        if(contentWidth <  mTextWidth){
+            String[] sArray = mExampleString.split(" ");
+            double half= Math.ceil((double)sArray.length/2);
+            sb.delete(0,sb.length());
+            for (int i = 0; i < half; i++) {
+                sb.append(" ");
+                sb.append(sArray[i]);
+
+            }
+
+            canvas.drawText(sb.toString(),
+                    paddingLeft  + 3,
+                    paddingTop -30 + (contentHeight + mTextHeight) / 2,
+                    mTextPaint);
+            sb.delete(0,sb.length());
+            for (int i = (int)half; i < sArray.length; i++) {
+                sb.append(" ");
+                sb.append(sArray[i]);
+            }
+            float secondLineWidth = mTextPaint.measureText(sb.toString());
+            canvas.drawText(sb.toString(),
+                    paddingLeft + (contentWidth - secondLineWidth) / 2,
+                    paddingTop + (contentHeight + mTextHeight) / 2,
+                    mTextPaint);
+
+
+        }else{
+            canvas.drawText(mExampleString,
+                    paddingLeft + (contentWidth - mTextWidth) / 2,
+                    paddingTop + (contentHeight + mTextHeight) / 2,
+                    mTextPaint);
+
+        }
+
+
 
         canvas.drawText(mExampleString2,
                 paddingLeft + (contentWidth - mTextWidth2) / 2,
                 paddingTop+30 + (contentHeight + mTextHeight) / 2,
                 mTextPaint);
+
+        float mTextWidth3 = mTextPaint.measureText(mExampleString3);
+        canvas.drawText(mExampleString3,
+                paddingLeft + (contentWidth - mTextWidth3) / 2,
+                paddingTop+60 + (contentHeight + mTextHeight) / 2,
+                mTextPaint);
+
     }
 
     public MyDate getCurrentDate() {

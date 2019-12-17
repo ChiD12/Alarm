@@ -1,7 +1,9 @@
 package com.example.alarm;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.provider.AlarmClock;
 import android.support.annotation.NonNull;
 import android.support.design.circularreveal.CircularRevealRelativeLayout;
@@ -69,6 +71,8 @@ public class Schedule extends AppCompatActivity implements NavigationView.OnNavi
 
     ScrollView top;
 
+    MenuItem twoala;
+
     private float x1, x2, y1, y2;
     private long p1,p2;
 
@@ -116,6 +120,9 @@ public class Schedule extends AppCompatActivity implements NavigationView.OnNavi
         sunT = findViewById(R.id.sundayDateTextView);
         View tv = findViewById(R.id.topview);
 
+        twoala = findViewById(R.id.nav_twoalarms);
+
+
         PopupMenu p  = new PopupMenu(this, null);
         menu = p.getMenu();
 
@@ -129,6 +136,9 @@ public class Schedule extends AppCompatActivity implements NavigationView.OnNavi
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar2);
         setDay(dow,toolbar);
         setSupportActionBar(toolbar);
+
+
+
 
         DL = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,DL, toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
@@ -153,6 +163,12 @@ public class Schedule extends AppCompatActivity implements NavigationView.OnNavi
         weekEvents = cal.getEvents();
 
         Menu menu = navigationView.getMenu(); // set text color for navigation menu
+
+         //change title for alarms
+        MenuItem item = menu.findItem(R.id.nav_twoalarms);
+
+        menu.removeItem(R.id.nav_twoalarms);
+
 
         MenuItem tools= menu.findItem(R.id.navigation_divider);
         MenuItem options= menu.findItem(R.id.divider);
@@ -246,6 +262,8 @@ public class Schedule extends AppCompatActivity implements NavigationView.OnNavi
             layoutParams.setMargins(5, startTimePixel, 0, 0);  //to set how far down the view will be or start time
 
             //View child = getLayoutInflater().inflate(R.layout.sample_event_view, null);  to create the view using XML
+
+            LinearLayout ll = new LinearLayout(this);
 
             EventViews myView = new EventViews(Schedule.this, i);
 
@@ -481,9 +499,11 @@ public class Schedule extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        //getMenuInflater().inflate(R.menu.menu, menu);
-        // Create your menu...
 
+        //twoala.setTitle("test");
+        //getMenuInflater().inflate(R.menu.drawer_menu, menu);
+        // Create your menu...
+        //menu.findItem(R.id.nav_twoalarms).setTitle("Test");
         this.menu = menu;
 
         return true;
@@ -518,27 +538,7 @@ public class Schedule extends AppCompatActivity implements NavigationView.OnNavi
                     startActivity(intent);
                 }catch (Exception e){}
                 break;
-            case R.id.nav_twoalarms:
-                tuesT.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                if(MainActivity.swticherBool){
-                    menuItem.setTitle("Two Alarms");
-                    Log.e("second","turned false from switch");
-                    MainActivity.secondAlarmPressed = false;
-                    MainActivity.swticherBool = false;
-                    Intent intent2 = new Intent(getBaseContext(), MainActivity.class);
-                    intent2.putExtra("CHANGE_UI", "false");
-                    startActivity(intent2);
 
-                }else{
-                    menuItem.setTitle("One Alarm");
-                    Log.e("second","turned true from switch");
-                    MainActivity.secondAlarmPressed = true;
-                    MainActivity.swticherBool = true;
-                    Intent intent3 = new Intent(getBaseContext(), MainActivity.class);
-                    intent3.putExtra("CHANGE_UI", "true");
-                    startActivity(intent3);
-                }
-                break;
         }
         DL.closeDrawer(GravityCompat.START);
         return true;
