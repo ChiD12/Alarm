@@ -150,8 +150,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 if (ContextCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(MainActivity.this, "You have already granted this permission!",
-                            Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MainActivity.this, "You have already granted this permission!",
+//                            Toast.LENGTH_SHORT).show();
                 } else {
                     requestStoragePermission();
                 }
@@ -536,9 +536,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == MY_PERMISSIONS_REQUEST_READ_CALENDAR)  {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Permission GRANTED", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Permission GRANTED", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -630,7 +630,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("config.txt", Context.MODE_PRIVATE));
             outputStreamWriter.write(data);
-            Toast.makeText(MainActivity.this,"saved to " + getFilesDir() + "/" + "config.txt",Toast.LENGTH_LONG).show();
+            //Toast.makeText(MainActivity.this,"saved to " + getFilesDir() + "/" + "config.txt",Toast.LENGTH_LONG).show();
             outputStreamWriter.close();
         }
         catch (IOException e) {
