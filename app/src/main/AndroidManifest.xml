@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.alarm">
+    package="com.event.alarm">
 
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
@@ -14,12 +14,12 @@
         android:theme="@style/AppTheme.NoActionBar"
         >
 
-        <activity android:name=".Schedule"
+        <activity android:name="com.event.alarm.Schedule"
             android:theme="@style/AppTheme.Schedule">
 
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.event.alarm.MainActivity"
 
             >
             <intent-filter>
@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".widgetProvider">
+        <receiver android:name="com.event.alarm.widgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>

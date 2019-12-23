@@ -1,8 +1,7 @@
-package com.example.alarm;
+package com.event.alarm;
 
 import android.content.ContentUris;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.CalendarContract;
 import android.content.ContentResolver;
