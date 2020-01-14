@@ -67,11 +67,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static boolean secondAlarmPressed;
     public static boolean swticherBool = false;
     Intent newactint;
-    Activity scheduleActivity;
-    private LocationManager locationManager;
-
-
-
 
     static public int firstBefore;
     static public int secondBefore;
@@ -99,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DL = findViewById(R.id.drawer_layout);
 
 
-
         if(!DL.isDrawerOpen(GravityCompat.START)){
             DL.setOnTouchListener(new View.OnTouchListener() { //TODO doesnt happen when sidebar open
                 @Override
@@ -114,12 +108,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         DL.addDrawerListener(toggle);
         toggle.syncState();
-        //getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
 
         Button BT = (Button) findViewById(R.id.BT);
         final Button openClock = (Button) findViewById(R.id.clkBTN);
@@ -129,43 +120,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         secondSeek = (SeekBar) findViewById(R.id.seekBT2);
         newactint =new Intent(MainActivity.this, Schedule.class);
 
+        //Request Permision to access calendar from user
         new Thread(new Runnable() {
             public void run() {
-
                 Calendar now = Calendar.getInstance();
-
                 Intent myIntent = new Intent(getApplicationContext(),
                         MainActivity.class);
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                        getApplicationContext(), 1, myIntent, 0);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 1, myIntent, 0);
 
                 AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-                alarmManager.set(AlarmManager.RTC, now.getTimeInMillis(),
-                        pendingIntent);
+                alarmManager.set(AlarmManager.RTC, now.getTimeInMillis(), pendingIntent);
 
-                if (ContextCompat.checkSelfPermission(MainActivity.this,
-                        Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-//                    Toast.makeText(MainActivity.this, "You have already granted this permission!",
-//                            Toast.LENGTH_SHORT).show();
+                if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 } else {
                     requestStoragePermission();
                 }
-
-
-
-                try{readCustom();
+                try{
+                    readCustom();
                 }catch (Exception e){
                     Log.getStackTraceString(e);
                     Log.e("cant find file","intent");
                 }
-
-
             }
         }).start();
-
-
-
 
         menu = navigationView.getMenu(); // set text color for navigation menu
 
@@ -183,24 +161,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView.setNavigationItemSelectedListener(this);
 
-        /*Bundle extras = getIntent().getExtras(); //to receive intent from schedule
-
-        SharedPreferences bb = getSharedPreferences("my_prefs", 0);
-        String value = bb.getString("CHANGE_UI", "");
-        Toast.makeText(this,"value",Toast.LENGTH_SHORT).show();
-        if (value != null) {
-            //String value = extras.getString("CHANGE_UI");
-            if(value.equals("false")){
-                Toast.makeText(this,"got in false " + value,Toast.LENGTH_SHORT).show();
-                changeSecondSeekFalse();
-            }
-            if(value.equals("true")){
-                Toast.makeText(this,"got in true + value",Toast.LENGTH_SHORT).show();
-                changeSecondSeekTrue();
-            }
-        }*/
-
-        //testchange
         hoursBeforeEvent = 1;
         defWakeUp = 11;
 
@@ -218,9 +178,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         ReadCal cal = new ReadCal(getApplicationContext());
                         ArrayList<MyDate> dateA =  cal.getEvents();
 
-
-
-
                         createAlarms(dateA,hoursBeforeEvent,minutesBeforeEvent,false);
                         if(secondAlarmPressed){
                             createAlarms(dateA,hoursBeforeSecondEvent,minutesBeforeSecondEvent,false);
@@ -236,16 +193,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 seek.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 new Thread(new Runnable() {
                     public void run() {
-                        // a potentially time consuming task
-
+                        //
                         String filepath = "config.txt";
                         File test = new File(filepath);
                         Log.e(""+test.exists(),"test io");
-                        ReadCal cal = new ReadCal(getApplicationContext());
+                        ReadCal cal = new ReadCal(getApplicationContext()); //Read the users calendar
                         ArrayList<MyDate> dateA =  cal.getEvents();
-
-
-
 
                         createAlarms(dateA,hoursBeforeEvent,minutesBeforeEvent,true);
                         if(secondAlarmPressed){
@@ -253,10 +206,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         }
                     }
                 }).start();
-
             }
         });
-        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() { //first seek currentLineTimeView
+        //set the listener for the first seek bar
+        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 switch (progress){
@@ -298,7 +251,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             break;
                 }
             }
-
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
 
@@ -362,33 +314,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
-
-
-
-
-            /*newActivity.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(newactint);
-                }
-            });*/
-
-
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        //getMenuInflater().inflate(R.menu.menu, menu);
-        // Create your menu...
-
         this.menu = menu;
-
         return true;
     }
-
-
+    //set the motion listener to swipe to change to calendar view
     public boolean onTouchEvent(MotionEvent touchevent){
         if(!DL.isDrawerOpen(GravityCompat.START)){
             switch (touchevent.getAction()){
@@ -399,7 +333,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 case MotionEvent.ACTION_UP:
                     x2 = touchevent.getX();
                     y2 = touchevent.getY();
-                    if (x1 > x2){
+                    if (x1 > x2){  //if the swipe was from left to right
                         startActivity(newactint);
                         overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
                     }
@@ -408,8 +342,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return false;
     }
-
-
 
     public void createAlarms(ArrayList<MyDate> dateA, int hourB, int minuteB, boolean all){
         int dateCreated=0;
@@ -422,7 +354,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     Log.e("set alarm for", dateA.get(i).toString());
                     calculateTimeBeforeEvent(dateA.get(i),hourB);
-
 
                     alarmDays= new ArrayList<Integer>();
                     alarmDays.add((daybefore)?dateA.get(i).getDayOfWeek()-1:dateA.get(i).getDayOfWeek());
@@ -439,11 +370,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                     hour -= hourB;
 
-
                     openClockIntent = new Intent(AlarmClock.ACTION_SET_ALARM);
-
-
-
                     openClockIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     openClockIntent.putExtra(AlarmClock.EXTRA_HOUR, hour);
                     openClockIntent.putExtra(AlarmClock.EXTRA_MINUTES, minute);
@@ -454,18 +381,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     openClockIntent.putExtra(AlarmClock.VALUE_RINGTONE_SILENT,false);
                     openClockIntent.putExtra(AlarmClock.EXTRA_VIBRATE,true);
 
-
-
-
-
                         if (openClockIntent.resolveActivity(getPackageManager()) != null) {
                             startActivity(openClockIntent);
                         }
 
-
                     if(getDeviceName().substring(0,7).equals("OnePlus")){    //if device is a oneplus
                         try{Thread.sleep(1500);}catch (InterruptedException e) {
-
                             e.printStackTrace();
                         }
                     }
@@ -478,7 +399,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
     public static void calculateTimeBeforeEvent(MyDate change, int hourB){
         int currentDay = change.getDay();
         if(change.getHour() - hourB < 0 || change.getHour() == 24){
@@ -486,7 +406,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             currentDay = change.getDay() -1;
             if(currentDay<1){
                 Calendar mycal = new GregorianCalendar(change.getYear(), change.getMonth()-1, change.getDay());
-                //change.setDay(mycal.getActualMaximum(Calendar.DAY_OF_MONTH));
+
                 if(change.getMonth() < 1){//january
                     change.setMonth(12);//december
                     change.setYear(change.getYear()-1);
@@ -539,7 +459,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
     public void writeCustom(String type, int value){ //specifies what to write to file
-
         switch (type){
             case "first":
                 firstBefore = value;
@@ -614,14 +533,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-
-
-
-
-
-
-
-
     public void writeToFile(String data,Context context) {
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("config.txt", Context.MODE_PRIVATE));
@@ -660,7 +571,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } catch (IOException e) {
             Log.e("login activity", "Can not read file: " + e.toString());
         }
-
         return ret;
     }
     public static String getDeviceName() {             //to check if device is OnePlus
@@ -690,10 +600,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
             phrase.append(c);
         }
-
         return phrase.toString();
     }
 
+    //for the navigation bar
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch(menuItem.getItemId()){
@@ -763,5 +673,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         secondText.setVisibility(View.VISIBLE);
         writeCustom(true);
     }
-
 }

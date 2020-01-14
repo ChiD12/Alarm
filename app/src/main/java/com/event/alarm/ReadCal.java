@@ -55,7 +55,6 @@ public class ReadCal<cursor> {
         today.add(Calendar.HOUR_OF_DAY,largerH); //to not get events that the alarm would take place before current time
         today.add(Calendar.MINUTE, largerM);
 
-
         todayDate = createDateObj(today, "Today",today, 0);
         Log.i(todayDate.toString(),"hi");
     }
@@ -73,6 +72,7 @@ public class ReadCal<cursor> {
         ContentUris.appendId(eventsUriBuilder, copy.getTimeInMillis());
         Uri eventsUri = eventsUriBuilder.build();
         Cursor cursor = null;
+        // query the database for all events in the next week
         cursor = contentResolver.query(eventsUri, null,CalendarContract.Events.ALL_DAY + "=? ",new String[]{"0"},CalendarContract.Instances.BEGIN);
 
         //cursor = contentResolver.query(CalendarContract.Events.CONTENT_URI,null,CalendarContract.Events.ALL_DAY + "=? ",new String[]{"0"},CalendarContract.Events.DTSTART);
@@ -91,10 +91,6 @@ public class ReadCal<cursor> {
                 int id_7 = cursor.getColumnIndex(CalendarContract.Events.RDATE);
                 int id_8 = cursor.getColumnIndex(CalendarContract.Events.RRULE);
 
-
-
-
-
                 String idValue = cursor.getString(id_1);
                 String titleValue = cursor.getString(id_2);
                 String repdate = cursor.getString(id_3);
@@ -104,13 +100,9 @@ public class ReadCal<cursor> {
                 String rdate = cursor.getString(id_7);
                 String rrule = cursor.getString(id_8);
 
-
-
                 if (color == null){
                     color = "0";
                 }
-
-
 
                 Long beglong = Long.parseLong(begValue); //Change start time of event to Long
                 Long endLong = Long.parseLong(end);
@@ -123,11 +115,7 @@ public class ReadCal<cursor> {
 
                 endTime.setTimeInMillis(endLong);
 
-
-
                 SimpleDateFormat dateformat = new SimpleDateFormat("kk:mm, MM,dd,yyyy"); //Date formating and toString
-
-
 
                 MyDate current = createDateObj(thisEvent,titleValue,endTime, colorint);
 
@@ -137,10 +125,8 @@ public class ReadCal<cursor> {
                     dateAList.add(current);
             }
             else{
-
             }
         }cursor.close();
-
         return dateAList;
     }
     public MyDate createDateObj(Calendar cal, String name, Calendar end, int color){ //creates a custom date object with seperated year/month/day/hour/minute variables
@@ -181,5 +167,4 @@ public class ReadCal<cursor> {
 
         return new MyDate(name,inty,intM,intd,inth,intm,dow, timeinmil,(ampmS.equals("PM")),endIntH,endIntM, color);
     }
-
 }
